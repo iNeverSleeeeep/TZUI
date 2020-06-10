@@ -20,17 +20,47 @@ namespace TZUI
         {
             if (master.name.EndsWith("Panel") == false)
                 throw new System.Exception("没有符合命名规范 UI必须命名为XXXPanel");
-            var files = Directory.GetFiles(TemplatePath, "*.lua", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
-                if (file.Contains("Generated"))
-                {
-                    if (file.Contains("#PanelName#"))
-                    {
 
-                    }
-                }
+            GeneratePanel(master);
+            GenerateDataBridge(master);
+        }
+
+        private static void GeneratePanel(UIMaster master)
+        {
+            var templateFile = Path.Combine(TemplatePath, "Generated", "#PanelName#.lua");
+            var templateContents = File.ReadAllText(templateFile);
+            var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            if (File.Exists(outputFile))
+                File.Delete(outputFile);
+            var outputContents = templateContents.Replace("#PanelName#", master.name);
+            WriteAllText(outputFile, outputContents);
+        }
+
+        private static void GenerateDataBridge(UIMaster master)
+        {
+            var templateFile = Path.Combine(TemplatePath, "Generated", "#PanelName#DataBridge.lua");
+            var templateContents = File.ReadAllText(templateFile);
+            var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            if (File.Exists(outputFile))
+                File.Delete(outputFile);
+            var outputContents = templateContents.Replace("#PanelName#", master.name);
+            WriteAllText(outputFile, outputContents);
+
+            var privateFile = Path.Combine(TemplatePath, "Private", "#PanelName#DataBridge.lua");
+            var privateContents = File.ReadAllText(privateFile);
+            var outputPrivateFile = privateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            if (File.Exists(outputPrivateFile) == false)
+            {
+                var outputPrivateContents = privateContents.Replace("#PanelName#", master.name);
+                WriteAllText(outputPrivateFile, outputPrivateContents);
             }
+        }
+
+        private static void WriteAllText(string path, string contents)
+        {
+            var dir = Path.GetDirectoryName(path);
+            Directory.CreateDirectory(dir);
+            File.WriteAllText(path, contents);
         }
     }
 }

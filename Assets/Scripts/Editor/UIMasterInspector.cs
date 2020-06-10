@@ -25,8 +25,18 @@ namespace TZUI
 
         private void DrawPublish()
         {
-            if (GUILayout.Button("发布UI"))
+            if (GUILayout.Button("发布"))
             {
+                AssetDatabase.StartAssetEditing();
+                try
+                {
+                    LuaScriptGenerator.Generate(target as UIMaster);
+                }
+                finally
+                {
+                    AssetDatabase.StopAssetEditing();
+                    AssetDatabase.Refresh();
+                }
 
             }
         }
