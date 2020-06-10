@@ -1,23 +1,23 @@
-local #PanelNamel#Config = {}
+local #PanelName#Config = {}
 
 -- 关闭方式 关闭按钮配置
-#PanelNamel#Config.CloseConfig = {
+#PanelName#Config.CloseConfig = {
 
 }
 
 -- 资产条配置
-#PanelNamel#Config.AssetsConfig = {
+#PanelName#Config.AssetsConfig = {
 
 }
 
 -- 背景样式配置
-#PanelNamel#Config.BackgroundConfig = {
+#PanelName#Config.BackgroundConfig = {
 
 }
 
 -- 标签页配置
-#PanelNamel#Config.TabsConfig = {
+#PanelName#Config.TabsConfig = {
 
 }
 
-return #PanelNamel#Config
+return #PanelName#Config

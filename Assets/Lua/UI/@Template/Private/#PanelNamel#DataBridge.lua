@@ -1,4 +1,4 @@
-local #PanelNamel#DataBridge = require("#PanelNamel#.Generated.#PanelNamel#DataBridge")
+local #PanelName#DataBridge = require("#PanelName#.Generated.#PanelName#DataBridge")
 
 
-return #PanelNamel#DataBridge
+return #PanelName#DataBridge

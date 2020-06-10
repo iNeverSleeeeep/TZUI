@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaea2ae9607ddd429fcd225a4e54c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectBinds: []
-  m_Events: []
-  m_VariableBinds: []
+  m_Binder:
+    m_ObjectBinds: []
+    m_Events: []
+    m_VariableBinds: []
 --- !u!114 &1238749151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +593,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SimplePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_VariableBinds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_Events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_ObjectBinds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_VariableBinds.Array.data[0].Name
+      value: bbb
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_VariableBinds.Array.data[0].m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379306172759320, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_VariableName
+      value: bbb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2498db61337be5541b49fc90b5d8cb33, type: 3}
