@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 namespace TZUI
 {
-    [CustomEditor(typeof(UIMaster))]
-    public class UIMasterInspector : UINodeInspector
+    [CustomEditor(typeof(UIWidget))]
+    public class UIWidgetInspector : UINodeInspector
     {
 
         protected new void OnEnable()
@@ -19,16 +19,7 @@ namespace TZUI
         {
             serializedObject.Update();
             base.OnInspectorGUI();
-            DrawPublish();
             serializedObject.ApplyModifiedProperties();
-        }
-
-        private void DrawPublish()
-        {
-            if (GUILayout.Button("发布UI"))
-            {
-
-            }
         }
     }
 }
