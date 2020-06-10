@@ -20,7 +20,9 @@ namespace TZUI
 
             if (m_Text != null)
             {
-                var text = m_Variable.GetString();
+                string text = null;
+                if (m_Variable != null)
+                    text = m_Variable.GetString();
                 if (string.IsNullOrEmpty(text) == false)
                 {
                     m_Text.canvasRenderer.cull = false;
@@ -37,7 +39,8 @@ namespace TZUI
             if (string.IsNullOrEmpty(m_VariableName))
                 return;
             m_Variable = FindVariable(m_VariableName);
-            m_Variable.OnValueChanged += OnValueChanged;
+            if (m_Variable != null)
+                m_Variable.OnValueChanged += OnValueChanged;
             OnValueChanged();
         }
 

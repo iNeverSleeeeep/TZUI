@@ -591,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 6177379305830124204, guid: 2498db61337be5541b49fc90b5d8cb33,
         type: 3}
       propertyPath: m_Name
-      value: Simple
+      value: SimplePanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2498db61337be5541b49fc90b5d8cb33, type: 3}
