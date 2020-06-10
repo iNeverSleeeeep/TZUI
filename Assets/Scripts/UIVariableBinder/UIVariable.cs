@@ -7,9 +7,10 @@ using UnityEngine;
 
 namespace TZUI
 {
+    [Serializable]
     public class UIVariable
     {
-        internal string Name;
+        [SerializeField] internal string Name;
         
         [SerializeField] private UIVariableType m_Type;
 
@@ -27,6 +28,11 @@ namespace TZUI
         }
 
         public event Action OnValueChanged;
+
+        public void ForceRefresh()
+        {
+            OnValueChanged?.Invoke();
+        }
     }
 
     public enum UIVariableType

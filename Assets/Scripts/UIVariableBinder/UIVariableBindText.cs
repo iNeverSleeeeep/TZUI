@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace TZUI
 {
+    [RequireComponent(typeof(Text))]
     public sealed class UIVariableBindText : UIVariableBindBase
     {
         [SerializeField]
@@ -12,15 +13,23 @@ namespace TZUI
 
         private Text m_Text;
 
-        private void OnValueChanged()
+        protected override void OnValueChanged()
         {
-            if (m_Text = null)
+            if (m_Text == null)
                 m_Text = GetComponent<Text>();
 
             if (m_Text != null)
             {
-                m_Text.enabled = true;
-                m_Text.text = m_Variable.GetString();
+                var text = m_Variable.GetString();
+                if (string.IsNullOrEmpty(text) == false)
+                {
+                    m_Text.canvasRenderer.cull = false;
+                    m_Text.text = text;
+                }
+                else
+                {
+                    m_Text.canvasRenderer.cull = true;
+                }
             }
         }
         protected override void BindVariables()
@@ -41,5 +50,12 @@ namespace TZUI
                 m_Variable = null;
             }
         }
+
+#if UNITY_EDITOR
+        public override bool IsVariableBinded(string name)
+        {
+            return m_VariableName == name;
+        }
+#endif
     }
 }

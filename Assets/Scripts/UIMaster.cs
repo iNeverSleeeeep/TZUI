@@ -8,7 +8,7 @@ using UnityObject = UnityEngine.Object;
 
 namespace TZUI
 {
-    public class UITable : MonoBehaviour, IObjectTable, IVariableTable, IEventTable
+    public class UIMaster : MonoBehaviour, IObjectTable, IVariableTable, IEventTable
     {
         #region Object Table
         [SerializeField] private UnityObject[] m_ObjectBinds;
@@ -23,7 +23,7 @@ namespace TZUI
                     foreach (var obj in m_ObjectBinds)
                         m_ObjectTable.Add(obj.name, obj);
 #if !UNITY_EDITOR
-                m_Binds = null;
+                    m_ObjectBinds = null;
 #endif
                 }
 
@@ -34,9 +34,13 @@ namespace TZUI
         #endregion
 
         #region Event Table
-
-        [SerializeField]
-        private string[] m_Events;
+        [SerializeField] private string[] m_Events;
+#if UNITY_EDITOR
+        public List<string> Events
+        {
+            get { return new List<string>(m_Events); }
+        }
+#endif
         private Dictionary<string, UISignal> m_EventTable;
         private Dictionary<string, UISignal> EventTable
         {
@@ -48,7 +52,7 @@ namespace TZUI
                     foreach (var e in m_Events)
                         m_EventTable.Add(e, UISignal.Get());
 #if !UNITY_EDITOR
-                    m_EventTable = null;
+                    m_Events = null;
 #endif
                 }
 
@@ -66,11 +70,22 @@ namespace TZUI
 
             return null;
         }
-        #endregion
+#endregion
 
         #region Variable Table
-        [SerializeField]
-        private UIVariable[] m_VariableBinds;
+        [SerializeField] private UIVariable[] m_VariableBinds;
+#if UNITY_EDITOR
+        public List<string> Variables
+        {
+            get
+            {
+                var variables = new List<string>();
+                foreach (var v in m_VariableBinds)
+                    variables.Add(v.Name);
+                return variables;
+            }
+        }
+#endif
         private Dictionary<string, UIVariable> m_VariableTable;
         private Dictionary<string, UIVariable> VariableTable
         {
@@ -81,6 +96,9 @@ namespace TZUI
                     m_VariableTable = new Dictionary<string, UIVariable>(StringComparer.Ordinal);
                     foreach (var v in this.m_VariableBinds)
                         m_VariableTable.Add(v.Name, v);
+#if !UNITY_EDITOR
+                    m_VariableBinds = null;
+#endif
                 }
 
                 return m_VariableTable;
@@ -98,19 +116,27 @@ namespace TZUI
             return null;
         }
         #endregion
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            foreach (var v in VariableTable.Values)
+                v.ForceRefresh();
+        }
+#endif
     }
 
-    internal interface IObjectTable
+    public interface IObjectTable
     {
 
     }
 
-    internal interface IVariableTable
+    public interface IVariableTable
     {
         UIVariable FindVariable(string name);
     }
-
-    internal interface IEventTable
+    
+    public interface IEventTable
     {
         UISignal GetEventSignal(string name);
     }

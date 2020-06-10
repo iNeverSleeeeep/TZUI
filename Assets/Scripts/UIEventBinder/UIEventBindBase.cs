@@ -2,13 +2,19 @@
 
 namespace TZUI
 {
-    internal abstract class UIEventBindBase : MonoBehaviour
+    [ExecuteInEditMode]
+    public abstract class UIEventBindBase : MonoBehaviour
     {
         [SerializeField]
-        private IEventTable m_EventTable;
+        private UIMaster m_EventTable;
 
-        internal IEventTable EventTable { get; private set; }
-
+        public UIMaster EventTable
+        {
+            get
+            {
+                return m_EventTable;
+            }
+        }
 
         protected void Awake()
         {
@@ -18,9 +24,7 @@ namespace TZUI
         private void RefreshEventTable()
         {
             if (m_EventTable == null)
-                m_EventTable = this.GetComponentInParentHard<IEventTable>();
-
-            EventTable = m_EventTable;
+                m_EventTable = this.GetComponentInParentHard<UIMaster>();
         }
 
         internal UISignal FindEvent(string name)
@@ -30,5 +34,9 @@ namespace TZUI
 
             return null;
         }
+
+#if UNITY_EDITOR
+        public abstract bool IsListenEvent(string eventName);
+#endif
     }
 }

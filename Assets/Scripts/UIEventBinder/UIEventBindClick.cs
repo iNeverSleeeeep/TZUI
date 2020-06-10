@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace TZUI
 {
-    class UIBindClick : UIEventBindBase, IPointerClickHandler
+    public class UIEventBindClick : UIEventBindBase, IPointerClickHandler
     {
         [SerializeField]
         private string m_EventName;
@@ -40,5 +40,12 @@ namespace TZUI
             base.Awake();
             m_Selectable = GetComponent<Selectable>();
         }
+
+#if UNITY_EDITOR
+        public override bool IsListenEvent(string eventName)
+        {
+            return m_EventName == eventName;
+        }
+#endif
     }
 }

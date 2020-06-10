@@ -2,17 +2,24 @@
 
 namespace TZUI
 {
+    [ExecuteInEditMode]
     public abstract class UIVariableBindBase : MonoBehaviour
     {
         [SerializeField]
-        private IVariableTable m_VariableTable;
+        private UIMaster m_VariableTable;
 
-        internal IVariableTable VariableTable { get; private set; }
+        public UIMaster VariableTable
+        {
+            get
+            {
+                return m_VariableTable;
+            }
+        }
 
         protected void Awake()
         {
             RefreshVariableTable();
-            UnbindVariables();
+            BindVariables();
         }
 
         protected void OnDestroy()
@@ -23,9 +30,7 @@ namespace TZUI
         private void RefreshVariableTable()
         {
             if (m_VariableTable == null)
-                m_VariableTable = this.GetComponentInParentHard<IVariableTable>();
-
-            VariableTable = m_VariableTable;
+                m_VariableTable = this.GetComponentInParentHard<UIMaster>();
         }
 
         internal UIVariable FindVariable(string name)
@@ -33,13 +38,24 @@ namespace TZUI
             if (string.IsNullOrEmpty(name))
                 return null;
 
-            if (VariableTable != null)
-                return VariableTable.FindVariable(name);
+            if (m_VariableTable != null)
+                return m_VariableTable.FindVariable(name);
 
             return null;
         }
 
         protected abstract void BindVariables();
         protected abstract void UnbindVariables();
+        protected abstract void OnValueChanged();
+
+#if UNITY_EDITOR
+        public abstract bool IsVariableBinded(string name);
+
+        private void OnValidate()
+        {
+            UnbindVariables();
+            BindVariables();
+        }
+#endif
     }
 }

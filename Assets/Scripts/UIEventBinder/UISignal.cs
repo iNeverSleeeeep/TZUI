@@ -16,6 +16,9 @@ namespace TZUI
         internal void Invoke(params object[] args)
         {
         }
+        internal void Invoke()
+        {
+        }
     }
     public delegate void UIEventDelegate(params object[] args);
 }
