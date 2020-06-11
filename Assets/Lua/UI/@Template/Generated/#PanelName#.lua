@@ -1,11 +1,11 @@
-local UIHelper = require("UICommon.UIHelper")
+local UIHelper = require("UI.UICommon.UIHelper")
 
-local #PanelName# = Class()
+local #PanelName# = BaseClass()
 local _views, _config, _panel
 local _required, _widgets = {}, {}
 
 _views = {
-    #ViewName# = "#PanelName#.Generated.#ViewName#",
+    --#ViewName# = "#PanelName#.Generated.#ViewName#",
 }
 
 local function _require(moduleName)
@@ -24,7 +24,7 @@ local function _loadView(t, k)
 end
 
 local function _initGenericWidgets()
-    _widgets[#_widgets+1] = require("UIWidgets.#WidgetName#").New():Bind(_panel.ui.#WidgetName#, _panel)
+    --_widgets[#_widgets+1] = require("UIWidgets.#WidgetName#").New():Bind(_panel.ui.#WidgetName#, _panel)
 end
 
 local function _releaseGenericWidgets()
@@ -35,10 +35,11 @@ end
 
 function #PanelName#:Load()
     _panel = self
-    self.root = Resources.Load("#PanelName#.prefab")
+    local prefab = CS.UnityEngine.Resources.Load("#PanelName#")
+    self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform)
     UIHelper.InitUITable(self.root, self)
-    _config = _require("#PanelName#.Private.#PanelName#Config")
-    self.db = _require("#PanelName#.Private.#PanelName#DataBridge")
+    _config = _require("UI.#PanelName#.Private.#PanelName#Config")
+    self.db = _require("UI.#PanelName#.Private.#PanelName#DataBridge")
     self.views = setmetatable(_views, {__index=_loadView})
     _initGenericWidgets()
 end

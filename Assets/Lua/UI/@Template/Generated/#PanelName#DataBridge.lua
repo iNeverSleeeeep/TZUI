@@ -1,4 +1,4 @@
-local #PanelName#DataBridge = Class()
+local #PanelName#DataBridge = BaseClass()
 
 function #PanelName#DataBridge:Load()
     self.temp = {}

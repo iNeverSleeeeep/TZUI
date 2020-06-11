@@ -1,9 +1,7 @@
 local #PanelName#Config = {}
 
-#PanelName#Config.#ViewName# = {}
+--#PanelName#Config.#ViewName# = {}
 
-#PanelName#Config.#ViewName#.#WidgetName# = {
-
-}
+--#PanelName#Config.#ViewName#.#WidgetName# = {}
 
 return #PanelName#Config

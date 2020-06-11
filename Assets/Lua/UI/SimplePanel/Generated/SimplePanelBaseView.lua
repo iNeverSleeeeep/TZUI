@@ -1,4 +1,4 @@
-local SimplePanelBaseView = Class()
+local SimplePanelBaseView = BaseClass()
 
 function SimplePanelBaseView:Load(panel)
     self.panel = panel

@@ -1,4 +1,4 @@
-local SimplePanelDataBridge = Class()
+local SimplePanelDataBridge = BaseClass()
 
 function SimplePanelDataBridge:Load()
     self.temp = {}

@@ -1,4 +1,4 @@
-local CloseButtonWidget = Class()
+local CloseButtonWidget = BaseClass()
 
 function CloseButtonWidget:Bind(widget, panel)
     self.widget = widget

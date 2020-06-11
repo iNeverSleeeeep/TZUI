@@ -1,4 +1,4 @@
-local #PanelName#Ctrl = Class()
+local #PanelName#Ctrl = BaseClass()
 
 
 return #PanelName#Ctrl

@@ -1,4 +1,4 @@
-local #ViewName# = require("#PanelName#.Generated.#ViewName#")
+local #ViewName# = require("UI.#PanelName#.Generated.#ViewName#")
 
 -- 刷新全部显示
 function #ViewName#:RefreshAll()

@@ -1,4 +1,4 @@
-local SimplePanelDataBridge = require("SimplePanel.Generated.SimplePanelDataBridge")
+local SimplePanelDataBridge = require("UI.SimplePanel.Generated.SimplePanelDataBridge")
 
 
 return SimplePanelDataBridge

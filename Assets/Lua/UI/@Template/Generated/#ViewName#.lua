@@ -1,4 +1,4 @@
-local #ViewName# = Class()
+local #ViewName# = BaseClass()
 
 function #ViewName#:Load(panel)
     self.panel = panel

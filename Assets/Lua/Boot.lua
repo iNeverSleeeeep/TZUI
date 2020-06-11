@@ -1,0 +1,6 @@
+require("BaseClass")
+CS.UnityEngine.Debug.Log("ok")
+UIRoot = CS.UnityEngine.GameObject.Find("UIRoot")
+local SimplePanel = require("UI.SimplePanel.Generated.SimplePanel")
+local panel = SimplePanel.New()
+panel:Load()
