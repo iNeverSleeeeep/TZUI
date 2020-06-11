@@ -28,6 +28,12 @@ namespace TZUI
                 return m_ObjectTable;
             }
         }
+        public UnityObject FindObject(string name)
+        {
+            if (ObjectTable.TryGetValue(name, out UnityObject obj))
+                return obj;
+            return null;
+        }
 
         #endregion
 
@@ -129,7 +135,7 @@ namespace TZUI
 
     public interface IObjectTable
     {
-
+        UnityObject FindObject(string name);
     }
 
     public interface IVariableTable

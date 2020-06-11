@@ -13,6 +13,11 @@ namespace TZUI
             return m_Binder.GetEventSignal(name);
         }
 
+        public Object FindObject(string name)
+        {
+            return m_Binder.FindObject(name);
+        }
+
         public UIVariable FindVariable(string name)
         {
             return m_Binder.FindVariable(name);

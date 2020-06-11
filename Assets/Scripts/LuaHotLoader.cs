@@ -18,12 +18,6 @@ public class LuaHotLoader : MonoBehaviour
     {
         get
         {
-            if (m_LuaEnv == null)
-            {
-                m_LuaEnv = Lua.LuaEnv;
-                m_LuaEnv.AddBuildin("hot", XLua.LuaDLL.Lua.LoadHotLib);
-                m_LuaEnv.DoString(reload);
-            }
             return m_LuaEnv;
         }
     }
@@ -36,6 +30,16 @@ public class LuaHotLoader : MonoBehaviour
             else if (Path.IsPathRooted(ScriptPath) == false)
                 return Path.Combine(Application.dataPath, ScriptPath);
             return ScriptPath;
+        }
+    }
+
+    public void Init()
+    {
+        if (m_LuaEnv == null)
+        {
+            m_LuaEnv = Lua.LuaEnv;
+            m_LuaEnv.AddBuildin("hot", XLua.LuaDLL.Lua.LoadHotLib);
+            m_LuaEnv.DoString(reload);
         }
     }
 
@@ -90,6 +94,8 @@ public class LuaHotLoader : MonoBehaviour
 #if UNITY_EDITOR
     private void OnApplicationFocus(bool focus)
     {
+        if (Application.isPlaying == false)
+            return;
         if (focus == false)
             return;
         CheckAndReload();
@@ -101,7 +107,7 @@ public class LuaHotLoader : MonoBehaviour
         var moduleList = new List<string>();
         foreach (var fullname in reloadList)
         {
-            var moduleFileName = fullname.Substring(FullScriptPath.Length).Replace("/", ".");
+            var moduleFileName = fullname.Substring(FullScriptPath.Length).Replace("\\", ".").Replace("/", ".");
             moduleFileName = moduleFileName.Substring(0, moduleFileName.Length - 4);
             moduleList.Add(moduleFileName);
         }
@@ -110,6 +116,7 @@ public class LuaHotLoader : MonoBehaviour
     }
 
     private readonly string reload = @"
+local hot = require('hot')
 local rawrequire = require
 local cache = {}
 local loaded = package.loaded
@@ -165,6 +172,7 @@ function require(path)
 end
 function hotreload(...)
     for i, path in ipairs({...}) do
+        CS.UnityEngine.Debug.Log(path)
         package.loaded[path] = nil
     end
     for i, path in ipairs({...}) do

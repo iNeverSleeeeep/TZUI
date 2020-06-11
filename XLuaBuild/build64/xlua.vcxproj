@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D374210A-CCA3-3FAA-B918-4E2572998210}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>xlua</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\TZUI\XLuaBuild\build64\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xlua.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xlua</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\TZUI\XLuaBuild\build64\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xlua.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xlua</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github\TZUI\XLuaBuild\build64\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">xlua.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">xlua</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github\TZUI\XLuaBuild\build64\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">xlua.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">xlua</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;LUA_BUILD_AS_DLL;CMAKE_INTDIR="Debug";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;LUA_BUILD_AS_DLL;CMAKE_INTDIR=\"Debug\";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Github/TZUI/XLuaBuild/build64/Debug/xlua.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github/TZUI/XLuaBuild/build64/Debug/xlua.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;LUA_BUILD_AS_DLL;CMAKE_INTDIR="Release";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;LUA_BUILD_AS_DLL;CMAKE_INTDIR=\"Release\";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Github/TZUI/XLuaBuild/build64/Release/xlua.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github/TZUI/XLuaBuild/build64/Release/xlua.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LUA_BUILD_AS_DLL;CMAKE_INTDIR="MinSizeRel";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LUA_BUILD_AS_DLL;CMAKE_INTDIR=\"MinSizeRel\";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Github/TZUI/XLuaBuild/build64/MinSizeRel/xlua.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github/TZUI/XLuaBuild/build64/MinSizeRel/xlua.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LUA_BUILD_AS_DLL;CMAKE_INTDIR="RelWithDebInfo";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;LUA_BUILD_AS_DLL;CMAKE_INTDIR=\"RelWithDebInfo\";xlua_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Github\TZUI\XLuaBuild;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src;D:\Github\TZUI\XLuaBuild\build64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Github/TZUI/XLuaBuild/build64/RelWithDebInfo/xlua.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Github/TZUI/XLuaBuild/build64/RelWithDebInfo/xlua.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Github\TZUI\XLuaBuild\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Github/TZUI/XLuaBuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SD:/Github/TZUI/XLuaBuild -BD:/Github/TZUI/XLuaBuild/build64 --check-stamp-file D:/Github/TZUI/XLuaBuild/build64/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeSystem.cmake;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\luaconf.h.in;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Github/TZUI/XLuaBuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SD:/Github/TZUI/XLuaBuild -BD:/Github/TZUI/XLuaBuild/build64 --check-stamp-file D:/Github/TZUI/XLuaBuild/build64/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeSystem.cmake;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\luaconf.h.in;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Github/TZUI/XLuaBuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SD:/Github/TZUI/XLuaBuild -BD:/Github/TZUI/XLuaBuild/build64 --check-stamp-file D:/Github/TZUI/XLuaBuild/build64/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeSystem.cmake;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\luaconf.h.in;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Github/TZUI/XLuaBuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SD:/Github/TZUI/XLuaBuild -BD:/Github/TZUI/XLuaBuild/build64 --check-stamp-file D:/Github/TZUI/XLuaBuild/build64/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeCXXCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeRCCompiler.cmake;D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\3.17.3\CMakeSystem.cmake;D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\luaconf.h.in;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.17\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Github\TZUI\XLuaBuild\build64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lapi.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lcode.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lctype.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ldebug.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ldo.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ldump.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lfunc.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lgc.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\llex.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lmem.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lobject.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lopcodes.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lparser.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lstate.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lstring.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ltable.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ltm.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lundump.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lvm.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lzio.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lauxlib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lbaselib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lbitlib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lcorolib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ldblib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\liolib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lmathlib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\loslib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lstrlib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\ltablib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\linit.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\lutf8lib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\lua-5.3.5\src\loadlib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\auxiliar.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\buffer.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\except.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\inet.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\io.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\luasocket.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\mime.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\options.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\select.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\tcp.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\timeout.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\udp.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\luasocket\wsocket.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_COMPAT_APIINTCASTS;LUA_LIB;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\i64lib.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\xlua.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\memory_leak_checker.c" />
+    <ClCompile Include="D:\Github\TZUI\XLuaBuild\hot\lua_hot.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LUA_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LUA_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LUA_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LUA_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Github\TZUI\XLuaBuild\build64\ZERO_CHECK.vcxproj">
+      <Project>{19DE87AE-2BEC-37CC-998C-34EC36D9DC3A}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
