@@ -6,7 +6,7 @@ function SimplePanelBaseView:RefreshAll()
 end
 
 function SimplePanelBaseView:OnButtonClick()
-    CS.UnityEngine.Debug.Log(123)
+    self.vt.bbb:SetString("123")
 end
 
 return SimplePanelBaseView

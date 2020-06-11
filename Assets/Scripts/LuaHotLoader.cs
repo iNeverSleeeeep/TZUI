@@ -124,12 +124,9 @@ function require(path)
     if loaded[path] ~= nil then
         return loaded[path]
     end
-    local ret = rawrequire(path)
     if cache[path] == nil then
-        if type(ret) == 'string' then
-            cache[path] = _G[ret]
-            return cache[path]
-        elseif type(ret) == 'table' then
+        local ret = rawrequire(path)
+        if type(ret) == 'table' then
             cache[path] = ret
             return cache[path]
         else
@@ -137,29 +134,21 @@ function require(path)
         end
     else
         local raw = cache[path]
-        if type(ret) == 'string' then
-            local t = _G[ret]
-            if type(t) == 'table' then
-                for k, v in pairs(t) do
-                    if type(v) == 'function' then
-                        if raw[k] == nil then
-                            raw[k] = v
-                        else
-                            hot.swaplfunc(raw[k], v)
-                        end
-                    end
-                end
-                _G[ret] = raw
+        local functions = {}
+        for k, v in pairs(raw) do
+            if type(v) == 'function' then
+                functions[k] = v
             end
-            loaded[path] = raw
-            return raw
-        elseif type(ret) == 'table' then
+        end
+        local ret = rawrequire(path)
+        if type(ret) == 'table' then
             for k, v in pairs(ret) do
                 if type(v) == 'function' then
-                    if raw[k] == nil then
+                    if functions[k] == nil then
                         raw[k] = v
                     else
-                        hot.swaplfunc(raw[k], v)
+                        hot.swaplfunc(functions[k], v)
+                        raw[k] = functions[k]
                     end
                 end
             end
