@@ -22,6 +22,7 @@ function UIHelper.InitUITable(go, panel)
     }
     panel.ot = setmetatable(ot, ot)
     panel.vt = setmetatable(vt, vt)
+    panel.et = node
 end
 
 return UIHelper

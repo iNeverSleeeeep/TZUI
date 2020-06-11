@@ -42,6 +42,8 @@ function SimplePanel:Load()
     self.db = _require("UI.SimplePanel.Private.SimplePanelDataBridge")
     self.views = setmetatable(_views, {__index=_loadView})
     _initGenericWidgets()
+
+    self.baseview = _require("UI.SimplePanel.Private.SimplePanelBaseView").New():Load(self, self.root)
 end
 
 function SimplePanel:Release()

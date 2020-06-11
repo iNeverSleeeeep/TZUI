@@ -9,8 +9,8 @@ _views = {
 }
 
 local function _require(moduleName)
-    required[moduleName] = require(moduleName)
-    return required[moduleName]
+    _required[moduleName] = require(moduleName)
+    return _required[moduleName]
 end
 
 local function _loadView(t, k)
@@ -42,6 +42,8 @@ function #PanelName#:Load()
     self.db = _require("UI.#PanelName#.Private.#PanelName#DataBridge")
     self.views = setmetatable(_views, {__index=_loadView})
     _initGenericWidgets()
+
+    self.baseview = _require("UI.#PanelName#.Private.#PanelName#BaseView").New():Load(self, self.root)
 end
 
 function #PanelName#:Release()
