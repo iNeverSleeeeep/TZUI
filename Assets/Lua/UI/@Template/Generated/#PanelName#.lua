@@ -36,7 +36,7 @@ end
 function #PanelName#:Load()
     _panel = self
     local prefab = CS.UnityEngine.Resources.Load("#PanelName#")
-    self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform)
+    self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform).transform
     UIHelper.InitUITable(self.root, self)
     _config = _require("UI.#PanelName#.Private.#PanelName#Config")
     self.db = _require("UI.#PanelName#.Private.#PanelName#DataBridge")

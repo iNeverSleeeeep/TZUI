@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityObject = UnityEngine.Object;
 
 namespace TZUI
 {
@@ -13,7 +15,7 @@ namespace TZUI
             return m_Binder.GetEventSignal(name);
         }
 
-        public Object FindObject(string name)
+        public UnityObject FindObject(string name)
         {
             return m_Binder.FindObject(name);
         }
@@ -21,6 +23,21 @@ namespace TZUI
         public UIVariable FindVariable(string name)
         {
             return m_Binder.FindVariable(name);
+        }
+
+        public void ListenEvent(string name, UIEventDelegate callback)
+        {
+            m_Binder.ListenEvent(name, callback);
+        }
+
+        public void ClearEvent(string name)
+        {
+            m_Binder.ClearEvent(name);
+        }
+
+        public void ClearAllEvent(string name)
+        {
+            m_Binder.ClearAllEvent(name);
         }
 
 #if UNITY_EDITOR

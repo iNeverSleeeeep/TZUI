@@ -34,9 +34,13 @@ namespace TZUI
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile))
+            {
+                File.SetAttributes(outputFile, FileAttributes.Normal);
                 File.Delete(outputFile);
+            }
             var outputContents = templateContents.Replace("#PanelName#", master.name);
             WriteAllText(outputFile, outputContents);
+            File.SetAttributes(outputFile, FileAttributes.ReadOnly);
         }
 
         private static void GeneratePanelConfig(UIMaster master)
@@ -58,7 +62,10 @@ namespace TZUI
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@Template", master.name).Replace("#ViewName#", viewName);
             if (File.Exists(outputFile))
+            {
+                File.SetAttributes(outputFile, FileAttributes.Normal);
                 File.Delete(outputFile);
+            }
             var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
 
             var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
@@ -80,6 +87,7 @@ namespace TZUI
             while (removeForeachEvent.IsMatch(outputContents))
                 outputContents = removeForeachEvent.Replace(outputContents, "");
             WriteAllText(outputFile, outputContents);
+            File.SetAttributes(outputFile, FileAttributes.ReadOnly);
 
             var privateFile = Path.Combine(TemplatePath, "Private", "#ViewName#.lua");
             var privateContents = File.ReadAllText(privateFile);
@@ -97,9 +105,13 @@ namespace TZUI
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile))
+            {
+                File.SetAttributes(outputFile, FileAttributes.Normal);
                 File.Delete(outputFile);
+            }
             var outputContents = templateContents.Replace("#PanelName#", master.name);
             WriteAllText(outputFile, outputContents);
+            File.SetAttributes(outputFile, FileAttributes.ReadOnly);
 
             var privateFile = Path.Combine(TemplatePath, "Private", "#PanelName#DataBridge.lua");
             var privateContents = File.ReadAllText(privateFile);

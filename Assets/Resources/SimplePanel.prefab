@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6177379305830124206}
   - component: {fileID: 6177379305830124205}
   m_Layer: 5
-  m_Name: Simple
+  m_Name: SimplePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,22 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaea2ae9607ddd429fcd225a4e54c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectBinds: []
-  m_Events:
-  - abc
-  m_VariableBinds:
-  - Name: ccc
-    m_Type: 3
-    m_BooleanValue: 0
-    m_IntegerValue: 0
-    m_FloatValue: 0
-    m_StringValue: hhh
-  - Name: ddd
-    m_Type: 3
-    m_BooleanValue: 0
-    m_IntegerValue: 0
-    m_FloatValue: 0
-    m_StringValue: 
+  m_Binder:
+    m_ObjectBinds: []
+    m_Events:
+    - OnButtonClick
+    m_VariableBinds:
+    - Name: bbb
+      m_Type: 3
+      m_BooleanValue: 0
+      m_IntegerValue: 0
+      m_FloatValue: 0
+      m_StringValue: 
 --- !u!1 &6177379306129495321
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EventTable: {fileID: 6177379305830124205}
-  m_EventName: 
+  m_EventName: OnButtonClick
 --- !u!1 &6177379306172759300
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,4 +349,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VariableTable: {fileID: 6177379305830124205}
-  m_VariableName: ddd
+  m_VariableName: bbb

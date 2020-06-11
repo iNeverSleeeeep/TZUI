@@ -8,16 +8,18 @@ namespace TZUI
 {
     public class UISignal : PoolableObject<UISignal>
     {
-        UIEventDelegate Delegates;
+        internal UIEventDelegate Delegates;
         protected override void Reset()
         {
             Delegates = null;
         }
         internal void Invoke(params object[] args)
         {
+            Delegates?.Invoke(args);
         }
         internal void Invoke()
         {
+            Delegates?.Invoke();
         }
     }
     public delegate void UIEventDelegate(params object[] args);

@@ -172,7 +172,6 @@ function require(path)
 end
 function hotreload(...)
     for i, path in ipairs({...}) do
-        CS.UnityEngine.Debug.Log(path)
         package.loaded[path] = nil
     end
     for i, path in ipairs({...}) do

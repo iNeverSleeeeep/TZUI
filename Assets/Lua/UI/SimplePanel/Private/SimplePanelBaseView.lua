@@ -5,4 +5,8 @@ function SimplePanelBaseView:RefreshAll()
 
 end
 
+function SimplePanelBaseView:OnButtonClick()
+    CS.UnityEngine.Debug.Log(123)
+end
+
 return SimplePanelBaseView
