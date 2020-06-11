@@ -30,35 +30,6 @@ static int hot_swaplfunc(lua_State *L)
 }
 #else
 
-#define NONVALIDVALUE		cast(TValue *, luaO_nilobject)
-#define ispseudo(i)		((i) <= LUA_REGISTRYINDEX)
-static TValue *index2addr (lua_State *L, int idx) {
-  CallInfo *ci = L->ci;
-  if (idx > 0) {
-    TValue *o = ci->func + idx;
-    api_check(L, idx <= ci->top - (ci->func + 1), "unacceptable index");
-    if (o >= L->top) return NONVALIDVALUE;
-    else return o;
-  }
-  else if (!ispseudo(idx)) {  /* negative index */
-    api_check(L, idx != 0 && -idx <= L->top - (ci->func + 1), "invalid index");
-    return L->top + idx;
-  }
-  else if (idx == LUA_REGISTRYINDEX)
-    return &G(L)->l_registry;
-  else {  /* upvalues */
-    idx = LUA_REGISTRYINDEX - idx;
-    api_check(L, idx <= MAXUPVAL + 1, "upvalue index too large");
-    if (ttislcf(ci->func))  /* light C function? */
-      return NONVALIDVALUE;  /* it has no upvalues */
-    else {
-      CClosure *func = clCvalue(ci->func);
-      return (idx <= func->nupvalues) ? &func->upvalue[idx-1] : NONVALIDVALUE;
-    }
-  }
-}
-
-
 static int hot_swaplfunc(lua_State *L)
 {
     StkId o1, o2;
@@ -67,8 +38,8 @@ static int hot_swaplfunc(lua_State *L)
     luaL_checktype(L, 1, LUA_TFUNCTION);
     luaL_checktype(L, 2, LUA_TFUNCTION);
 
-    o1 = index2addr(L, 1);
-    o2 = index2addr(L, 2);
+    o1 = L->ci->func + 1;
+    o2 = L->ci->func + 2;
 
     p1 = getproto(o1);
     p2 = getproto(o2);
