@@ -14,10 +14,18 @@ function SimplePanelBaseView:Load(panel, root)
     UIHelper.InitUITable(self.root, self)
 
     self.et:ListenEvent("OnButtonClick", Bind(self.OnButtonClick, self))
+    self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
+    return self
 end
 
 function SimplePanelBaseView:Release()
-
+    self.et:ClearAllEvents()
+    if self.root ~= self.panel.root then
+        if IsNull(self.root) == false then
+            CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
+        end
+    end
+    self.root = nil
 end
 
 function SimplePanelBaseView:Show()

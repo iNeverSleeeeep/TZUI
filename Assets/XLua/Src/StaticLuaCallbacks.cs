@@ -634,6 +634,15 @@ namespace XLua
                 return LuaAPI.luaL_error(L, "c# exception in print:" + e);
             }
         }
+
+        [MonoPInvokeCallback(typeof(LuaCSFunction))]
+        internal static int IsNull(RealStatePtr L)
+        {
+            ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            object obj = translator.FastGetCSObj(L, 1);
+            LuaAPI.lua_pushboolean(L, obj == null || obj.Equals(null));
+            return 1;
+        }
 #endif
 
 #if !UNITY_SWITCH || UNITY_EDITOR

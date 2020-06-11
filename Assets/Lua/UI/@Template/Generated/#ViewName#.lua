@@ -14,10 +14,17 @@ function #ViewName#:Load(panel, root)
     UIHelper.InitUITable(self.root, self)
 
     @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
+    return self
 end
 
 function #ViewName#:Release()
-
+    self.et:ClearAllEvents()
+    if self.root ~= self.panel.root then
+        if IsNull(self.root) == false then
+            CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
+        end
+    end
+    self.root = nil
 end
 
 function #ViewName#:Show()

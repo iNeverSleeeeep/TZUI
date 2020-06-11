@@ -51,10 +51,13 @@ function SimplePanel:Release()
     for k, v in pairs(self.views) do
         v:Release()
     end
+    self.baseview:Release()
     for k, v in pairs(_required) do
         package.loaded[k] = nil
     end
-    GameObject.Destroy(self.root)
+    if IsNull(self.root) == false then
+        CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
+    end
     self.root = nil
 end
 

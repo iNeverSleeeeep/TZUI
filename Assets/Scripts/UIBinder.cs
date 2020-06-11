@@ -89,7 +89,7 @@ namespace TZUI
                 signal.Delegates = null;
         }
 
-        public void ClearAllEvent(string name)
+        public void ClearAllEvents(string name)
         {
             foreach (var signal in EventTable)
                 signal.Value.Delegates = null;
@@ -168,7 +168,7 @@ namespace TZUI
         UISignal GetEventSignal(string name);
         void ListenEvent(string name, UIEventDelegate callback);
         void ClearEvent(string name);
-        void ClearAllEvent(string name);
+        void ClearAllEvents(string name);
     }
 }
 

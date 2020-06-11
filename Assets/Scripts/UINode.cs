@@ -35,9 +35,9 @@ namespace TZUI
             m_Binder.ClearEvent(name);
         }
 
-        public void ClearAllEvent(string name)
+        public void ClearAllEvents(string name)
         {
-            m_Binder.ClearAllEvent(name);
+            m_Binder.ClearAllEvents(name);
         }
 
 #if UNITY_EDITOR

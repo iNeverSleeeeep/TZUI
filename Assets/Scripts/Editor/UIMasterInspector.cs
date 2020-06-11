@@ -31,6 +31,7 @@ namespace TZUI
                 try
                 {
                     LuaScriptGenerator.Generate(target as UIMaster);
+                    PrefabUtility.ApplyPrefabInstance((target as UIMaster).gameObject, InteractionMode.AutomatedAction);
                 }
                 finally
                 {

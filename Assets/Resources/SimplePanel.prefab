@@ -116,6 +116,7 @@ MonoBehaviour:
     m_ObjectBinds: []
     m_Events:
     - OnButtonClick
+    - OnButtonClick2
     m_VariableBinds:
     - Name: bbb
       m_Type: 3

@@ -97,10 +97,15 @@ namespace XLua
                 {
                     throw new Exception("call xlua_setglobal fail!");
                 }
+                LuaAPI.lua_pushstdcallcfunction(rawL, StaticLuaCallbacks.IsNull);
+                if (0 != LuaAPI.xlua_setglobal(rawL, "IsNull"))
+                {
+                    throw new Exception("call xlua_setglobal fail!");
+                }
 #endif
 
-                //template engine lib register
-                TemplateEngine.LuaTemplate.OpenLib(rawL);
+            //template engine lib register
+            TemplateEngine.LuaTemplate.OpenLib(rawL);
 
                 AddSearcher(StaticLuaCallbacks.LoadBuiltinLib, 2); // just after the preload searcher
                 AddSearcher(StaticLuaCallbacks.LoadFromCustomLoaders, 3);

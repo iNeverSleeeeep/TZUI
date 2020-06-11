@@ -74,8 +74,10 @@ namespace TZUI
 
             while (foreachEvent.IsMatch(outputContents))
             {
-                foreach (var eventName in master.Events)
+                var events = master.Events;
+                for (var i = events.Count - 1; i >= 0; --i)
                 {
+                    var eventName = events[i];
                     if (string.IsNullOrEmpty(eventName))
                         continue;
                     outputContents = foreachEvent.Replace(outputContents, "\n$1$2$3$4\n$1$3");
