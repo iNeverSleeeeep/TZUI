@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScriptPath: Lua/
-  Pattern: ^[a-zA-Z0-9:\\]*.lua
+  Pattern: ^[a-zA-Z0-9:\\/]*.lua
 --- !u!1 &1238749149
 GameObject:
   m_ObjectHideFlags: 0
