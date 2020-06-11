@@ -775,6 +775,11 @@ PrefabInstance:
       propertyPath: m_Binder.m_VariableBinds.Array.data[0].m_Type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_Events.Array.data[0]
+      value: abcde
+      objectReference: {fileID: 0}
     - target: {fileID: 6177379306172759320, guid: 2498db61337be5541b49fc90b5d8cb33,
         type: 3}
       propertyPath: m_VariableName

@@ -9,7 +9,7 @@ function SimplePanelBaseView:Load(panel, root)
 
     UIHelper.InitUITable(self.root, self)
 
-    @for@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
+    self.et:ListenEvent("abcde", Bind(self.abcde, self))
 end
 
 function SimplePanelBaseView:Release()

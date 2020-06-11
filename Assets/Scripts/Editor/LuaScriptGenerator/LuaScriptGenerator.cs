@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,6 +60,25 @@ namespace TZUI
             if (File.Exists(outputFile))
                 File.Delete(outputFile);
             var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
+
+            var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
+            var removeForeachEvent = new Regex(@"\n--([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
+            var replaceEvent = new Regex(@"\n([^@]*)#EventName#([\s\S]*)", RegexOptions.Compiled);
+
+            while (foreachEvent.IsMatch(outputContents))
+            {
+                foreach (var eventName in master.Events)
+                {
+                    if (string.IsNullOrEmpty(eventName))
+                        continue;
+                    outputContents = foreachEvent.Replace(outputContents, "\n$1$2$3$4\n$1$3");
+                    while (replaceEvent.IsMatch(outputContents))
+                        outputContents = replaceEvent.Replace(outputContents, "\n$1" + eventName + "$2");
+                }
+                outputContents = foreachEvent.Replace(outputContents, "\n--$1$2$3$4");
+            }
+            while (removeForeachEvent.IsMatch(outputContents))
+                outputContents = removeForeachEvent.Replace(outputContents, "");
             WriteAllText(outputFile, outputContents);
 
             var privateFile = Path.Combine(TemplatePath, "Private", "#ViewName#.lua");
