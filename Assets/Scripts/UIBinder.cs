@@ -92,8 +92,11 @@ namespace TZUI
                 if (m_VariableTable == null)
                 {
                     m_VariableTable = new Dictionary<string, UIVariable>(StringComparer.Ordinal);
-                    foreach (var v in this.m_VariableBinds)
-                        m_VariableTable.Add(v.Name, v);
+                    if (m_VariableBinds != null)
+                    {
+                        foreach (var v in m_VariableBinds)
+                            m_VariableTable.Add(v.Name, v);
+                    }
 #if !UNITY_EDITOR
                     m_VariableBinds = null;
 #endif

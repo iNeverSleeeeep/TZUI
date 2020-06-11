@@ -22,6 +22,7 @@ namespace TZUI
                 throw new System.Exception("没有符合命名规范 UI必须命名为XXXPanel");
 
             GeneratePanel(master);
+            GenerateBaseView(master);
             GenerateDataBridge(master);
         }
 
@@ -34,6 +35,27 @@ namespace TZUI
                 File.Delete(outputFile);
             var outputContents = templateContents.Replace("#PanelName#", master.name);
             WriteAllText(outputFile, outputContents);
+        }
+
+        private static void GenerateBaseView(UIMaster master)
+        {
+            var viewName = master.name + "BaseView";
+            var templateFile = Path.Combine(TemplatePath, "Generated", "#ViewName#.lua");
+            var templateContents = File.ReadAllText(templateFile);
+            var outputFile = templateFile.Replace("@Template", master.name).Replace("#ViewName#", viewName);
+            if (File.Exists(outputFile))
+                File.Delete(outputFile);
+            var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
+            WriteAllText(outputFile, outputContents);
+
+            var privateFile = Path.Combine(TemplatePath, "Private", "#ViewName#.lua");
+            var privateContents = File.ReadAllText(privateFile);
+            var outputPrivateFile = privateFile.Replace("@Template", master.name).Replace("#ViewName#", viewName);
+            if (File.Exists(outputPrivateFile) == false)
+            {
+                var outputPrivateContents = privateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
+                WriteAllText(outputPrivateFile, outputPrivateContents);
+            }
         }
 
         private static void GenerateDataBridge(UIMaster master)
