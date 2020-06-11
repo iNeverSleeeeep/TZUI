@@ -98,6 +98,15 @@ namespace XLua.LuaDLL
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)] //[-0, +0, m]
         public static extern void luaL_openlibs(IntPtr L);
 
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)] //[-0, +0, m]
+        public static extern int luaL_openhot(IntPtr L);
+
+        [MonoPInvokeCallback(typeof(XLua.LuaDLL.lua_CSFunction))]
+        public static int LoadHotLib(System.IntPtr L)
+        {
+            return luaL_openhot(L);
+        }
+
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern uint xlua_objlen(IntPtr L, int stackPos);
 

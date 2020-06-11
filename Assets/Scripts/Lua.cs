@@ -6,19 +6,19 @@ using XLua;
 
 public class Lua : MonoBehaviour
 {
-    LuaEnv m_LuaEnv;
+    public static LuaEnv LuaEnv;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        m_LuaEnv = new LuaEnv();
-        m_LuaEnv.AddLoader(CustomLoader);
-        m_LuaEnv.DoString("require('Boot')");
+        LuaEnv = new LuaEnv();
+        LuaEnv.AddLoader(CustomLoader);
+        LuaEnv.DoString("require('Boot')");
     }
 
     private void OnDestroy()
     {
-        m_LuaEnv.Dispose();
-        m_LuaEnv = null;
+        LuaEnv.Dispose();
+        LuaEnv = null;
     }
 
     public byte[] CustomLoader(ref string filepath)
