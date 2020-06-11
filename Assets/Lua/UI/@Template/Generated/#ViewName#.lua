@@ -9,7 +9,7 @@ function #ViewName#:Load(panel, root)
 
     UIHelper.InitUITable(self.root, self)
 
-    @foreach #EventName#@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
+    @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
 end
 
 function #ViewName#:Release()
