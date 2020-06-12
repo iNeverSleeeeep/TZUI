@@ -8,5 +8,9 @@ namespace TZUI
 {
     public class UIWidget : UINode
     {
+        public string WidgetName;
+#if UNITY_EDITOR
+
+#endif
     }
 }
