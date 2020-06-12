@@ -2,6 +2,7 @@ local SimplePanelDataBridge = BaseClass()
 
 function SimplePanelDataBridge:Load()
     self.temp = {}
+    return self
 end
 
 function SimplePanelDataBridge:Release()

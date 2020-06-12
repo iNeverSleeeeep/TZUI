@@ -1,10 +1,11 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
-local #ViewName# = BaseClass()
+local #ViewName# = BaseClass(nil, "#ViewName#")
 
 function #ViewName#:Load(panel, root)
     self.panel = panel
     self.views = panel.views
+    self.db = panel.db
 
     self.root = root or CS.UnityEngine.Resources.Load("#ViewName#").transform
     self.root.localScale = {x=1,y=1,z=1}
@@ -14,6 +15,8 @@ function #ViewName#:Load(panel, root)
     UIHelper.InitUITable(self.root, self)
 
     @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
+
+    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index!") end
     return self
 end
 

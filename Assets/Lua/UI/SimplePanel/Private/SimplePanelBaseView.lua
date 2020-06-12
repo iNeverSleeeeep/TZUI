@@ -6,7 +6,9 @@ function SimplePanelBaseView:RefreshAll()
 end
 
 function SimplePanelBaseView:OnButtonClick()
-    self.vt.bbb:SetString("123")
+    self.db.temp.index = self.db.temp.index or 0
+    self.db.temp.index = self.db.temp.index + 1
+    self.vt.bbb:SetString(self.db.temp.index)
 end
 
 return SimplePanelBaseView

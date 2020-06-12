@@ -10,7 +10,7 @@ function HelperFunctions.UnPack(param, count, i, ...)
 	return param[i], BindTool.UnPack(param, count, i + 1, ...)
 end
 
-function HelperFunctions.Bind(func, self, ...)
+function HelperFunctions.Bind(func, ...)
 	local count = select('#', ...)
 	local param = {...}
 

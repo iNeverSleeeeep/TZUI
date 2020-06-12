@@ -27,10 +27,29 @@ namespace TZUI
             return m_StringValue;
         }
 
+        public bool GetBool()
+        {
+            return m_BooleanValue;
+        }
+
         public event Action OnValueChanged;
 
         public void ForceRefresh()
         {
+            OnValueChanged?.Invoke();
+        }
+
+        public void SetString(string text)
+        {
+            Debug.Assert(m_Type == UIVariableType.String);
+            m_StringValue = text;
+            OnValueChanged?.Invoke();
+        }
+
+        public void SetBool(bool b)
+        {
+            Debug.Assert(m_Type == UIVariableType.Boolean);
+            m_BooleanValue = b;
             OnValueChanged?.Invoke();
         }
     }

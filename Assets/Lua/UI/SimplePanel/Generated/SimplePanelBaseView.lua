@@ -1,10 +1,11 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
-local SimplePanelBaseView = BaseClass()
+local SimplePanelBaseView = BaseClass(nil, "SimplePanelBaseView")
 
 function SimplePanelBaseView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
+    self.db = panel.db
 
     self.root = root or CS.UnityEngine.Resources.Load("SimplePanelBaseView").transform
     self.root.localScale = {x=1,y=1,z=1}
@@ -15,6 +16,8 @@ function SimplePanelBaseView:Load(panel, root)
 
     self.et:ListenEvent("OnButtonClick", Bind(self.OnButtonClick, self))
     self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
+
+    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index!") end
     return self
 end
 

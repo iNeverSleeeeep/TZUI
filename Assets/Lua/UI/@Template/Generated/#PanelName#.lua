@@ -1,6 +1,6 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 
-local #PanelName# = BaseClass()
+local #PanelName# = BaseClass(nil, "#PanelName#")
 local _views, _config, _panel
 local _required, _widgets = {}, {}
 
@@ -39,7 +39,7 @@ function #PanelName#:Load()
     self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform).transform
     UIHelper.InitUITable(self.root, self)
     _config = _require("UI.#PanelName#.Private.#PanelName#Config")
-    self.db = _require("UI.#PanelName#.Private.#PanelName#DataBridge")
+    self.db = _require("UI.#PanelName#.Private.#PanelName#DataBridge").New():Load()
     self.views = setmetatable(_views, {__index=_loadView})
     _initGenericWidgets()
 
@@ -52,6 +52,8 @@ function #PanelName#:Release()
         v:Release()
     end
     self.baseview:Release()
+    self.db:Release()
+    self.db = nil
     for k, v in pairs(_required) do
         package.loaded[k] = nil
     end

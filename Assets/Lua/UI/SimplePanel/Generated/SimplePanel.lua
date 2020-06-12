@@ -39,7 +39,7 @@ function SimplePanel:Load()
     self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform).transform
     UIHelper.InitUITable(self.root, self)
     _config = _require("UI.SimplePanel.Private.SimplePanelConfig")
-    self.db = _require("UI.SimplePanel.Private.SimplePanelDataBridge")
+    self.db = _require("UI.SimplePanel.Private.SimplePanelDataBridge").New():Load()
     self.views = setmetatable(_views, {__index=_loadView})
     _initGenericWidgets()
 
@@ -52,6 +52,8 @@ function SimplePanel:Release()
         v:Release()
     end
     self.baseview:Release()
+    self.db:Release()
+    self.db = nil
     for k, v in pairs(_required) do
         package.loaded[k] = nil
     end
