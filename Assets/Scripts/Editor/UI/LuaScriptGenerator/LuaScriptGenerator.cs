@@ -13,7 +13,7 @@ namespace TZUI
         {
             get
             {
-                return Path.Combine(Application.dataPath, "Lua", "UI", "@Template");
+                return Path.Combine(Application.dataPath, "Lua", "UI", "@PanelTemplate");
             }
         }
 
@@ -26,13 +26,14 @@ namespace TZUI
             GeneratePanelConfig(master);
             GenerateBaseView(master);
             GenerateDataBridge(master);
+            GenerateWidgets(master);
         }
 
         private static void GeneratePanel(UIMaster master)
         {
             var templateFile = Path.Combine(TemplatePath, "Generated", "#PanelName#.lua");
             var templateContents = File.ReadAllText(templateFile);
-            var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile))
             {
                 File.SetAttributes(outputFile, FileAttributes.Normal);
@@ -47,7 +48,7 @@ namespace TZUI
         {
             var templateFile = Path.Combine(TemplatePath, "Private", "#PanelName#Config.lua");
             var templateContents = File.ReadAllText(templateFile);
-            var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile) == false)
             {
                 var outputContents = templateContents.Replace("#PanelName#", master.name);
@@ -60,7 +61,7 @@ namespace TZUI
             var viewName = master.name + "BaseView";
             var templateFile = Path.Combine(TemplatePath, "Generated", "#ViewName#.lua");
             var templateContents = File.ReadAllText(templateFile);
-            var outputFile = templateFile.Replace("@Template", master.name).Replace("#ViewName#", viewName);
+            var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
             if (File.Exists(outputFile))
             {
                 File.SetAttributes(outputFile, FileAttributes.Normal);
@@ -93,7 +94,7 @@ namespace TZUI
 
             var privateFile = Path.Combine(TemplatePath, "Private", "#ViewName#.lua");
             var privateContents = File.ReadAllText(privateFile);
-            var outputPrivateFile = privateFile.Replace("@Template", master.name).Replace("#ViewName#", viewName);
+            var outputPrivateFile = privateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
             if (File.Exists(outputPrivateFile) == false)
             {
                 var outputPrivateContents = privateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
@@ -105,7 +106,7 @@ namespace TZUI
         {
             var templateFile = Path.Combine(TemplatePath, "Generated", "#PanelName#DataBridge.lua");
             var templateContents = File.ReadAllText(templateFile);
-            var outputFile = templateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile))
             {
                 File.SetAttributes(outputFile, FileAttributes.Normal);
@@ -117,11 +118,20 @@ namespace TZUI
 
             var privateFile = Path.Combine(TemplatePath, "Private", "#PanelName#DataBridge.lua");
             var privateContents = File.ReadAllText(privateFile);
-            var outputPrivateFile = privateFile.Replace("@Template", master.name).Replace("#PanelName#", master.name);
+            var outputPrivateFile = privateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputPrivateFile) == false)
             {
                 var outputPrivateContents = privateContents.Replace("#PanelName#", master.name);
                 WriteAllText(outputPrivateFile, outputPrivateContents);
+            }
+        }
+
+        private static void GenerateWidgets(UIMaster master)
+        {
+            foreach (var widget in master.GetComponentsInChildren<UIWidget>(true))
+            {
+                var widgetType = widget.GetType().Name;
+                Debug.Log(widgetType);
             }
         }
 

@@ -1,4 +1,4 @@
-local SimplePanelDataBridge = BaseClass()
+local SimplePanelDataBridge = BaseClass(nil, "SimplePanelDataBridge")
 
 function SimplePanelDataBridge:Load()
     self.temp = {}

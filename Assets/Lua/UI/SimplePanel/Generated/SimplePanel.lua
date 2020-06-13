@@ -1,6 +1,6 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 
-local SimplePanel = BaseClass()
+local SimplePanel = BaseClass(nil, "SimplePanel")
 local _views, _config, _panel
 local _required, _widgets = {}, {}
 

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 
 namespace TZUI
 {
-    public abstract class UIWidget : UINode
+    [CustomEditor(typeof(CloseButtonWidget))]
+    public class CloseButtonWidgetInspector : UIWidgetInspector
     {
+
     }
 }
