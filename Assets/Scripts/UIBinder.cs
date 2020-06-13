@@ -9,7 +9,7 @@ namespace TZUI
     public class UIBinder : IObjectTable, IVariableTable, IEventTable
     {
         #region Object Table
-        [SerializeField] private UnityObject[] m_ObjectBinds;
+        [SerializeField] private UnityObject[] m_ObjectBinds = null;
         private Dictionary<string, UnityObject> m_ObjectTable;
         private Dictionary<string, UnityObject> ObjectTable
         {
@@ -38,7 +38,7 @@ namespace TZUI
         #endregion
 
         #region Event Table
-        [SerializeField] private string[] m_Events;
+        [SerializeField] private string[] m_Events = null;
 #if UNITY_EDITOR
         public List<string> Events
         {
@@ -97,7 +97,7 @@ namespace TZUI
         #endregion
 
         #region Variable Table
-        [SerializeField] private UIVariable[] m_VariableBinds;
+        [SerializeField] private UIVariable[] m_VariableBinds = null;
 #if UNITY_EDITOR
         public List<string> Variables
         {
@@ -110,7 +110,7 @@ namespace TZUI
             }
         }
 #endif
-        private Dictionary<string, UIVariable> m_VariableTable;
+        private Dictionary<string, UIVariable> m_VariableTable = null;
         private Dictionary<string, UIVariable> VariableTable
         {
             get

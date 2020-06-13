@@ -10,9 +10,9 @@ namespace TZUI
     [Serializable]
     public class UIVariable
     {
-        [SerializeField] internal string Name;
+        [SerializeField] internal string Name = null;
         
-        [SerializeField] private UIVariableType m_Type;
+        [SerializeField] private UIVariableType m_Type = UIVariableType.String;
 
         [SerializeField] private bool m_BooleanValue;
 

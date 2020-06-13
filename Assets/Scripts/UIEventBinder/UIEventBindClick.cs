@@ -12,7 +12,7 @@ namespace TZUI
     public class UIEventBindClick : UIEventBindBase, IPointerClickHandler
     {
         [SerializeField]
-        private string m_EventName;
+        private string m_EventName = null;
 
         private Selectable m_Selectable;
 

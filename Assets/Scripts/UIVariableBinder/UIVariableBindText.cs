@@ -7,7 +7,7 @@ namespace TZUI
     public sealed class UIVariableBindText : UIVariableBindBase
     {
         [SerializeField]
-        private string m_VariableName;
+        private string m_VariableName = null;
 
         private UIVariable m_Variable;
 

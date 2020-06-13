@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace TZUI
 {
-    public class UIWidget : UINode
+    public abstract class UIWidget : UINode
     {
-        public string WidgetName;
-#if UNITY_EDITOR
-
-#endif
+        public abstract string WidgetName { get; }
     }
 }

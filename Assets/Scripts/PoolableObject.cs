@@ -9,7 +9,7 @@ namespace TZUI
     public abstract class PoolableObject<T> where T : PoolableObject<T>, new()
     {
         protected abstract void Reset();
-        private static Stack<T> m_Objects;
+        private static Stack<T> m_Objects = null;
 
         internal static T Get()
         {
@@ -22,6 +22,8 @@ namespace TZUI
         internal static void Release(T obj)
         {
             obj.Reset();
+            if (m_Objects == null)
+                m_Objects = new Stack<T>();
             m_Objects.Push(obj);
         }
     }
