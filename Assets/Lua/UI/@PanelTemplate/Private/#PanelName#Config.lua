@@ -10,6 +10,4 @@ local #PanelName#Config nil
     },
 }
 
-
-
 return #PanelName#Config

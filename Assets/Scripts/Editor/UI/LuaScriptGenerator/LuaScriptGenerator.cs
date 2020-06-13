@@ -192,6 +192,8 @@ namespace TZUI
                     }
                 }
                 outputContents.InsertRange(outputContents.Count - 1, template);
+                // 添加一个换行
+                outputContents.Insert(outputContents.Count-1, "");
             }
         }
 

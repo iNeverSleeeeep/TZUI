@@ -10,9 +10,9 @@ SimplePanelConfig = {
     },
 }
 
-
-
+-- 哦哦哦
 SimplePanel.SimplePanelBaseView.CloseButtonWidget = {
-    CloseDelay = 0, -- 延时关闭
+    CloseDelay = 10, -- 延时关闭
 }
+
 return SimplePanelConfig
