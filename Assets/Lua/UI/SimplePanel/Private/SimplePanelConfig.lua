@@ -1,6 +1,18 @@
-local SimplePanelConfig = {}
+local SimplePanelConfig nil
 
---SimplePanelConfig.#ViewName# = {}
+-- 页面总配置
+SimplePanelConfig = {
+    TestOne = 2,
+    -- AAA = 3, 废弃
+    SubConfig = {
+        a = 4,
+        b = 090909,
+    },
+}
 
---SimplePanelConfig.#ViewName#.#WidgetName# = {}
+
+
+SimplePanel.SimplePanelBaseView.CloseButtonWidget = {
+    CloseDelay = 0, -- 延时关闭
+}
 return SimplePanelConfig

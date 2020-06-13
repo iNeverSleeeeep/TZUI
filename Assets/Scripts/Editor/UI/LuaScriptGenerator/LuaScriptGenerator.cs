@@ -9,11 +9,18 @@ namespace TZUI
 {
     public static class LuaScriptGenerator
     {
-        public static string TemplatePath
+        public static string PanelTemplatePath
         {
             get
             {
                 return Path.Combine(Application.dataPath, "Lua", "UI", "@PanelTemplate");
+            }
+        }
+        public static string WidgetTemplatePath
+        {
+            get
+            {
+                return Path.Combine(Application.dataPath, "Lua", "UI", "@WidgetTemplate");
             }
         }
 
@@ -26,12 +33,11 @@ namespace TZUI
             GeneratePanelConfig(master);
             GenerateBaseView(master);
             GenerateDataBridge(master);
-            GenerateWidgets(master);
         }
 
         private static void GeneratePanel(UIMaster master)
         {
-            var templateFile = Path.Combine(TemplatePath, "Generated", "#PanelName#.lua");
+            var templateFile = Path.Combine(PanelTemplatePath, "Generated", "#PanelName#.lua");
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile))
@@ -46,20 +52,45 @@ namespace TZUI
 
         private static void GeneratePanelConfig(UIMaster master)
         {
-            var templateFile = Path.Combine(TemplatePath, "Private", "#PanelName#Config.lua");
-            var templateContents = File.ReadAllText(templateFile);
+            var templateFile = Path.Combine(PanelTemplatePath, "Private", "#PanelName#Config.lua");
+            var outputContents = new List<string>(File.ReadAllLines(templateFile));
             var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
-            if (File.Exists(outputFile) == false)
+            List<string> currentContents = new List<string>();
+            if (File.Exists(outputFile))
+                currentContents.AddRange(File.ReadAllLines(outputFile));
+
+            for (var i = outputContents.Count - 1; i >= 0; --i)
             {
-                var outputContents = templateContents.Replace("#PanelName#", master.name);
-                WriteAllText(outputFile, outputContents);
+                outputContents[i] = outputContents[i].Replace("#PanelName#", master.name);
+                var line = outputContents[i];
+                if (line.StartsWith(master.name) == false)
+                    continue;
+                var index = currentContents.IndexOf(line);
+                if (index > 0)
+                {
+                    for (var j = 1; j < currentContents.Count - index; ++j)
+                    {
+                        var current = j + index;
+                        if (outputContents[i + j].StartsWith("}"))
+                            break;
+                        if (outputContents[i + j].Contains("}"))
+                            continue;
+                        var field = outputContents[i + j].Substring(0, outputContents[i + j].IndexOf("=") - 1);
+                        if (currentContents[current].StartsWith(field))
+                            outputContents[i + j] = currentContents[current];
+                    }
+                }
+
             }
+
+            GenerateWidgets(master, outputContents, currentContents);
+            WriteAllText(outputFile, string.Join("\n", outputContents));
         }
 
         private static void GenerateBaseView(UIMaster master)
         {
             var viewName = master.name + "BaseView";
-            var templateFile = Path.Combine(TemplatePath, "Generated", "#ViewName#.lua");
+            var templateFile = Path.Combine(PanelTemplatePath, "Generated", "#ViewName#.lua");
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
             if (File.Exists(outputFile))
@@ -92,7 +123,7 @@ namespace TZUI
             WriteAllText(outputFile, outputContents);
             File.SetAttributes(outputFile, FileAttributes.ReadOnly);
 
-            var privateFile = Path.Combine(TemplatePath, "Private", "#ViewName#.lua");
+            var privateFile = Path.Combine(PanelTemplatePath, "Private", "#ViewName#.lua");
             var privateContents = File.ReadAllText(privateFile);
             var outputPrivateFile = privateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
             if (File.Exists(outputPrivateFile) == false)
@@ -104,7 +135,7 @@ namespace TZUI
 
         private static void GenerateDataBridge(UIMaster master)
         {
-            var templateFile = Path.Combine(TemplatePath, "Generated", "#PanelName#DataBridge.lua");
+            var templateFile = Path.Combine(PanelTemplatePath, "Generated", "#PanelName#DataBridge.lua");
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputFile))
@@ -116,7 +147,7 @@ namespace TZUI
             WriteAllText(outputFile, outputContents);
             File.SetAttributes(outputFile, FileAttributes.ReadOnly);
 
-            var privateFile = Path.Combine(TemplatePath, "Private", "#PanelName#DataBridge.lua");
+            var privateFile = Path.Combine(PanelTemplatePath, "Private", "#PanelName#DataBridge.lua");
             var privateContents = File.ReadAllText(privateFile);
             var outputPrivateFile = privateFile.Replace("@PanelTemplate", master.name).Replace("#PanelName#", master.name);
             if (File.Exists(outputPrivateFile) == false)
@@ -126,12 +157,41 @@ namespace TZUI
             }
         }
 
-        private static void GenerateWidgets(UIMaster master)
+        private static void GenerateWidgets(UIMaster master, List<string> outputContents, List<string> currentContents)
         {
             foreach (var widget in master.GetComponentsInChildren<UIWidget>(true))
             {
                 var widgetType = widget.GetType().Name;
-                Debug.Log(widgetType);
+                var template = new List<string>(File.ReadAllLines(Path.Combine(WidgetTemplatePath, widgetType + ".lua")));
+                var view = widget.GetComponentInParentHard<UIView>() as UINode;
+                if (view == null)
+                    view = master;
+
+                for (var i = template.Count - 1; i >= 0; --i)
+                {
+                    template[i] = template[i].Replace("#PanelName#", master.name);
+                    template[i] = template[i].Replace("#ViewName#", view == master ? master.name + "BaseView" : master.name + view.name);
+                    template[i] = template[i].Replace("#WidgetName#", widget.name);
+                    var line = template[i];
+                    if (line.StartsWith(master.name) == false)
+                        continue;
+                    var index = currentContents.IndexOf(line);
+                    if (index > 0)
+                    {
+                        for (var j = 1; j < currentContents.Count - index; ++j)
+                        {
+                            var current = j + index;
+                            if (template[i + j].StartsWith("}"))
+                                break;
+                            if (template[i + j].Contains("}"))
+                                continue;
+                            var field = template[i + j].Substring(0, template[i + j].IndexOf("=") - 1);
+                            if (currentContents[current].StartsWith(field))
+                                template[i + j] = currentContents[current];
+                        }
+                    }
+                }
+                outputContents.InsertRange(outputContents.Count - 1, template);
             }
         }
 
