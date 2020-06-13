@@ -10,4 +10,4 @@ local #PanelName#Config = nil
     },
 }
 
-return #PanelName#Config
+return setmetatable(#PanelName#Config, {__newindex = function() end})

@@ -1,8 +1,8 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 
 local SimplePanel = BaseClass(nil, "SimplePanel")
-local _views, _config, _panel
-local _required, _widgets = {}, {}
+local _views, _panel
+local _required = {}
 
 _views = {
     --#ViewName# = "SimplePanel.Generated.#ViewName#",
@@ -23,31 +23,19 @@ local function _loadView(t, k)
     return nil
 end
 
-local function _initGenericWidgets()
-    --_widgets[#_widgets+1] = require("UIWidgets.#WidgetName#").New():Bind(_panel.ui.#WidgetName#, _panel)
-end
-
-local function _releaseGenericWidgets()
-    for i = 1, #_widgets do
-        _widgets[i]:Release()
-    end
-end
-
 function SimplePanel:Load()
     _panel = self
     local prefab = CS.UnityEngine.Resources.Load("SimplePanel")
     self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform).transform
     UIHelper.InitUITable(self.root, self)
-    _config = _require("UI.SimplePanel.Private.SimplePanelConfig")
+    self.config = _require("UI.SimplePanel.Private.SimplePanelConfig")
     self.db = _require("UI.SimplePanel.Private.SimplePanelDataBridge").New():Load()
     self.views = setmetatable(_views, {__index=_loadView})
-    _initGenericWidgets()
 
     self.baseview = _require("UI.SimplePanel.Private.SimplePanelBaseView").New():Load(self, self.root)
 end
 
 function SimplePanel:Release()
-    _releaseGenericWidgets()
     for k, v in pairs(self.views) do
         v:Release()
     end

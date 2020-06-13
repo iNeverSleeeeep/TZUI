@@ -2,7 +2,7 @@ local SimplePanelConfig = nil
 
 -- 页面总配置
 SimplePanelConfig = {
-    TestOne = 2,
+    TestOne = 3,
     -- AAA = 3, 废弃
     SubConfig = {
         a = 4,
@@ -17,4 +17,4 @@ SimplePanelConfig.SimplePanelBaseView.CloseButtonWidget = {
     CloseDelay = 10, -- 延时关闭
 }
 
-return SimplePanelConfig
+return setmetatable(SimplePanelConfig, {__newindex = function() end})
