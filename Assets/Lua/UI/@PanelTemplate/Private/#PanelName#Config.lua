@@ -1,4 +1,4 @@
-local #PanelName#Config nil
+local #PanelName#Config = nil
 
 -- 页面总配置
 #PanelName#Config = {

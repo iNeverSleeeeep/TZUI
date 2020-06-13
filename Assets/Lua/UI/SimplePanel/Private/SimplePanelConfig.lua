@@ -1,4 +1,4 @@
-local SimplePanelConfig nil
+local SimplePanelConfig = nil
 
 -- 页面总配置
 SimplePanelConfig = {
@@ -10,8 +10,10 @@ SimplePanelConfig = {
     },
 }
 
+SimplePanelConfig.SimplePanelBaseView = {}
+
 -- 哦哦哦
-SimplePanel.SimplePanelBaseView.CloseButtonWidget = {
+SimplePanelConfig.SimplePanelBaseView.CloseButtonWidget = {
     CloseDelay = 10, -- 延时关闭
 }
 
