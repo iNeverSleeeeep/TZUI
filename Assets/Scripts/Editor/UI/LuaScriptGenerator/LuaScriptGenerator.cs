@@ -118,7 +118,7 @@ namespace TZUI
             {
                 var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([^@]*)( @end@)", RegexOptions.Compiled);
                 var removeForeachEvent = new Regex(@"\n--([ \t]*)(@foreach EventName@ )([^@]*)( @end@)", RegexOptions.Compiled);
-                var replaceEvent = new Regex(@"\n([^@]*)#EventName#([^@]*)", RegexOptions.Compiled);
+                var replaceEvent = new Regex(@"\n([^@]*)#EventName#([^@]*\n)", RegexOptions.Compiled);
 
                 while (foreachEvent.IsMatch(outputContents))
                 {
@@ -143,14 +143,14 @@ namespace TZUI
             {
                 var foreachWidget = new Regex(@"\n([ \t]*)(@foreach Widget@ )([^@]*)( @end@)", RegexOptions.Compiled);
                 var removeForeachWidget = new Regex(@"\n--([ \t]*)(@foreach Widget@ )([^@]*)( @end@)", RegexOptions.Compiled);
-                var replaceWidgetType = new Regex(@"\n([^@]*)#WidgetType#([^@]*)", RegexOptions.Compiled);
-                var replaceWidgetName = new Regex(@"\n([^@]*)#WidgetName#([^@]*)", RegexOptions.Compiled);
+                var replaceWidgetType = new Regex(@"\n([^@]*)#WidgetType#([^@]*\n)", RegexOptions.Compiled);
+                var replaceWidgetName = new Regex(@"\n([^@]*)#WidgetName#([^@]*\n)", RegexOptions.Compiled);
                 var root = view == null ? master.gameObject : view.gameObject;
                 while (foreachWidget.IsMatch(outputContents))
                 {
                     var widgets = new List<UIWidget>(root.GetComponentsInChildren<UIWidget>(true));
                     widgets.Reverse();
-                    foreach ( var widget in widgets)
+                    foreach (var widget in widgets)
                     {
                         var parentView = widget.GetComponentInParentHard<UIView>();
                         if (parentView == null || parentView == view)

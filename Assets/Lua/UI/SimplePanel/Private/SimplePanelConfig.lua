@@ -13,13 +13,13 @@ SimplePanelConfig = {
 SimplePanelConfig.SimplePanelBaseView = {}
 
 -- 哦哦哦
-SimplePanelConfig.SimplePanelBaseView.CloseButtonWidget = {
-    CloseDelay = 10, -- 延时关闭
+SimplePanelConfig.SimplePanelBaseView.CloseButton = {
+    CloseDelay = 0, -- 延时关闭
 }
 
 -- 哦哦哦
-SimplePanelConfig.SimplePanelBaseView.CloseButtonWidget = {
-    CloseDelay = 10, -- 延时关闭
+SimplePanelConfig.SimplePanelBaseView.CloseButton2 = {
+    CloseDelay = 0, -- 延时关闭
 }
 
 return setmetatable(SimplePanelConfig, {__newindex = function() end})

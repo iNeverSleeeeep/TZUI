@@ -29,9 +29,9 @@ end
 function SimplePanelBaseView:Release()
     self.et:ClearAllEvents()
 
-    self.CloseButton:Release() 
-    self.CloseButton2 = nil
-    self.CloseButton2:Release() 
+    self.CloseButton:Release()
+    self.CloseButton = nil
+    self.CloseButton2:Release()
     self.CloseButton2 = nil
 
     if self.root ~= self.panel.root then

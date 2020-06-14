@@ -1,4 +1,4 @@
 -- 哦哦哦
-#PanelName#Config.#ViewName#.CloseButtonWidget = {
+#PanelName#Config.#ViewName#.#WidgetName# = {
     CloseDelay = 0, -- 延时关闭
 }

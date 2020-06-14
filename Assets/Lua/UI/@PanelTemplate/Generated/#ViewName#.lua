@@ -26,7 +26,7 @@ end
 function #ViewName#:Release()
     self.et:ClearAllEvents()
 
-    @foreach Widget@ self.#WidgetName#:Release() 
+    @foreach Widget@ self.#WidgetName#:Release()
     self.#WidgetName# = nil @end@
 
     if self.root ~= self.panel.root then
