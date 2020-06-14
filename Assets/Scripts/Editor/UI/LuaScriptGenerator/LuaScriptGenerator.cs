@@ -172,14 +172,97 @@ namespace TZUI
             WriteAllText(outputFile, outputContents);
             File.SetAttributes(outputFile, FileAttributes.ReadOnly);
 
-            var privateFile = Path.Combine(PanelTemplatePath, "Private", "#ViewName#.lua");
-            var privateContents = File.ReadAllText(privateFile);
-            var outputPrivateFile = privateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
-            if (File.Exists(outputPrivateFile) == false)
+            #region private file
             {
-                var outputPrivateContents = privateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
-                WriteAllText(outputPrivateFile, outputPrivateContents);
+                var privateFile = Path.Combine(PanelTemplatePath, "Private", "#ViewName#.lua");
+                var privateContents = new List<string>(File.ReadAllLines(privateFile));
+                var outputPrivateFile = privateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
+                var currentContents = new List<string>();
+                if (File.Exists(outputPrivateFile))
+                    currentContents = new List<string>(File.ReadAllLines(outputPrivateFile));
+
+                var usedFuncs = new List<string>();
+                for (var i = privateContents.Count - 1; i >= 0; --i)
+                {
+                    privateContents[i] = privateContents[i].Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
+                    if (privateContents[i].StartsWith("function") == false)
+                        continue;
+                    var index = currentContents.IndexOf(privateContents[i]);
+                    if (index > 0)
+                    {
+                        usedFuncs.Add(currentContents[index]);
+                        var endIndex = index + 1;
+                        for (var j = 1; j < currentContents.Count - index; ++j)
+                        {
+                            var current = j + index;
+                            if (currentContents[i + j].StartsWith("end"))
+                            {
+                                endIndex = i + j;
+                                break;
+                            }
+                        }
+                        privateContents.InsertRange(i + 1, currentContents.GetRange(index + 1, endIndex - index - 1));
+                    }
+                }
+                var events = view == null ? master.Events : view.Events;
+                for (var i = 0; i < events.Count; ++i)
+                {
+                    var eventFunc = string.Format("function {0}{1}:{2}({3})", master.name, view == null ? "BaseView" : view.name, events[i], string.Empty);
+                    var index = currentContents.IndexOf(eventFunc);
+                    if (index > 0)
+                    {
+                        usedFuncs.Add(currentContents[index]);
+                        var endIndex = index + 1;
+                        for (var j = 1; j < currentContents.Count - index; ++j)
+                        {
+                            var current = j + index;
+                            if (currentContents[current].StartsWith("end"))
+                            {
+                                endIndex = current;
+                                break;
+                            }
+                        }
+                        privateContents.InsertRange(privateContents.Count - 1, currentContents.GetRange(index, endIndex - index + 1));
+                    }
+                    else
+                    {
+                        privateContents.Insert(privateContents.Count - 1, eventFunc);
+                        privateContents.Insert(privateContents.Count - 1, "end");
+                    }
+                    privateContents.Insert(privateContents.Count - 1, "");
+                }
+                for (var i = 0; i < currentContents.Count; ++i)
+                {
+                    if (currentContents[i].StartsWith("function") == false)
+                        continue;
+                    if (usedFuncs.Contains(currentContents[i]))
+                        continue;
+                    var startIndex = i;
+                    var endIndex = i + 1;
+                    for (var j = i - 1; j >= 0; --j)
+                    {
+                        if (currentContents[j].StartsWith("--") == false)
+                        {
+                            startIndex = j;
+                            break;
+                        }
+                    }
+                    for (var j = i + 1; j < currentContents.Count; ++j)
+                    {
+                        if (currentContents[j].StartsWith("end"))
+                        {
+                            endIndex = j;
+                            break;
+                        }
+                    }
+                    privateContents.InsertRange(privateContents.Count - 1, currentContents.GetRange(startIndex, endIndex - startIndex + 1));
+                }
+                privateContents.Insert(privateContents.Count - 1, "");
+                if (File.Exists(outputPrivateFile))
+                    File.Delete(outputPrivateFile);
+                WriteAllText(outputPrivateFile, string.Join("\n", privateContents));
             }
+            #endregion
         }
 
         private static void GenerateDataBridge(UIMaster master)
