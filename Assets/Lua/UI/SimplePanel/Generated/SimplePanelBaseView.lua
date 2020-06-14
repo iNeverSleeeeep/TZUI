@@ -1,7 +1,8 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local SimplePanelBaseView = BaseClass(nil, "SimplePanelBaseView")
-@foreach WidgetType@ local #WidgetType# = require('UI.UIWidgets.#WidgetType#') @end@
+local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
+local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
 function SimplePanelBaseView:Load(panel, root)
     self.panel = panel
@@ -14,9 +15,12 @@ function SimplePanelBaseView:Load(panel, root)
     self.root.anchorMax = {x=1,y=1}
 
     UIHelper.InitUITable(self.root, self)
-
 
-    @foreach Widget@ self.#WidgetName# = #widgetType#.New():Load(self.ot.#WidgetName#, self, panel.config.SimplePanelSimplePanelBaseView.#WidgetName#) 
+    self.et:ListenEvent("OnButtonClick", Bind(self.OnButtonClick, self))
+    self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
+
+    self.CloseButton = CloseButtonWidget.New():Load(self.ot.CloseButton, self, panel.config.SimplePanelSimplePanelBaseView.CloseButton) 
+    self.CloseButton2 = CloseButtonWidget.New():Load(self.ot.CloseButton2, self, panel.config.SimplePanelSimplePanelBaseView.CloseButton2) 
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index!") end
     return self
@@ -25,7 +29,10 @@ end
 function SimplePanelBaseView:Release()
     self.et:ClearAllEvents()
 
-    @foreach Widget@ self.#WidgetName#:Release() self.#WidgetName# = nil 
+    self.CloseButton:Release() 
+    self.CloseButton2 = nil
+    self.CloseButton2:Release() 
+    self.CloseButton2 = nil
 
     if self.root ~= self.panel.root then
         if IsNull(self.root) == false then

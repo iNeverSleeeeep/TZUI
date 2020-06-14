@@ -1,7 +1,7 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local #ViewName# = BaseClass(nil, "#ViewName#")
-@foreach WidgetType@ local #WidgetType# = require('UI.UIWidgets.#WidgetType#') @end@
+@foreach Widget@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
 
 function #ViewName#:Load(panel, root)
     self.panel = panel
@@ -17,7 +17,7 @@ function #ViewName#:Load(panel, root)
 
     @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
 
-    @foreach Widget@ self.#WidgetName# = #widgetType#.New():Load(self.ot.#WidgetName#, self, panel.config.#PanelName##ViewName#.#WidgetName#)  @end@
+    @foreach Widget@ self.#WidgetName# = #WidgetType#.New():Load(self.ot.#WidgetName#, self, panel.config.#PanelName##ViewName#.#WidgetName#)  @end@
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index!") end
     return self
@@ -26,7 +26,8 @@ end
 function #ViewName#:Release()
     self.et:ClearAllEvents()
 
-    @foreach Widget@ self.#WidgetName#:Release() self.#WidgetName# = nil @end@
+    @foreach Widget@ self.#WidgetName#:Release() 
+    self.#WidgetName# = nil @end@
 
     if self.root ~= self.panel.root then
         if IsNull(self.root) == false then

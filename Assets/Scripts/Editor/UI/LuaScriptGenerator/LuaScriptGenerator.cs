@@ -116,9 +116,9 @@ namespace TZUI
 
             #region foreach events
             {
-                var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
-                var removeForeachEvent = new Regex(@"\n--([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
-                var replaceEvent = new Regex(@"\n([^@]*)#EventName#([\s\S]*)", RegexOptions.Compiled);
+                var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([^@]*)( @end@)", RegexOptions.Compiled);
+                var removeForeachEvent = new Regex(@"\n--([ \t]*)(@foreach EventName@ )([^@]*)( @end@)", RegexOptions.Compiled);
+                var replaceEvent = new Regex(@"\n([^@]*)#EventName#([^@]*)", RegexOptions.Compiled);
 
                 while (foreachEvent.IsMatch(outputContents))
                 {
@@ -141,19 +141,25 @@ namespace TZUI
 
             #region foreach widgets
             {
-                var foreachWidget = new Regex(@"\n([ \t]*)(@foreach Widget@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
-                var removeForeachWidget = new Regex(@"\n--([ \t]*)(@foreach Widget@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
-                var replaceWidgetType = new Regex(@"\n([^@]*)#WidgetType#([\s\S]*)", RegexOptions.Compiled);
-                var replaceWidgetName = new Regex(@"\n([^@]*)#WidgetName#([\s\S]*)", RegexOptions.Compiled);
+                var foreachWidget = new Regex(@"\n([ \t]*)(@foreach Widget@ )([^@]*)( @end@)", RegexOptions.Compiled);
+                var removeForeachWidget = new Regex(@"\n--([ \t]*)(@foreach Widget@ )([^@]*)( @end@)", RegexOptions.Compiled);
+                var replaceWidgetType = new Regex(@"\n([^@]*)#WidgetType#([^@]*)", RegexOptions.Compiled);
+                var replaceWidgetName = new Regex(@"\n([^@]*)#WidgetName#([^@]*)", RegexOptions.Compiled);
                 var root = view == null ? master.gameObject : view.gameObject;
                 while (foreachWidget.IsMatch(outputContents))
                 {
-                    foreach ( var widget in root.GetComponentsInChildren<UIWidget>(true))
+                    var widgets = new List<UIWidget>(root.GetComponentsInChildren<UIWidget>(true));
+                    widgets.Reverse();
+                    foreach ( var widget in widgets)
                     {
                         var parentView = widget.GetComponentInParentHard<UIView>();
                         if (parentView == null || parentView == view)
                         {
-
+                            outputContents = foreachWidget.Replace(outputContents, "\n$1$2$3$4\n$1$3");
+                            while (replaceWidgetType.IsMatch(outputContents))
+                                outputContents = replaceWidgetType.Replace(outputContents, "\n$1" + widget.GetType().Name + "$2");
+                            while (replaceWidgetName.IsMatch(outputContents))
+                                outputContents = replaceWidgetName.Replace(outputContents, "\n$1" + widget.name + "$2");
                         }
                     }
                     outputContents = foreachWidget.Replace(outputContents, "\n--$1$2$3$4");

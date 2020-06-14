@@ -17,4 +17,9 @@ SimplePanelConfig.SimplePanelBaseView.CloseButtonWidget = {
     CloseDelay = 10, -- 延时关闭
 }
 
+-- 哦哦哦
+SimplePanelConfig.SimplePanelBaseView.CloseButtonWidget = {
+    CloseDelay = 10, -- 延时关闭
+}
+
 return setmetatable(SimplePanelConfig, {__newindex = function() end})
