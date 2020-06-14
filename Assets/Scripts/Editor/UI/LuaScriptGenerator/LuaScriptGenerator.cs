@@ -31,7 +31,7 @@ namespace TZUI
 
             GeneratePanel(master);
             GeneratePanelConfig(master);
-            GenerateBaseView(master);
+            GenerateViews(master);
             GenerateDataBridge(master);
         }
 
@@ -92,9 +92,18 @@ namespace TZUI
             WriteAllText(outputFile, string.Join("\n", outputContents));
         }
 
-        private static void GenerateBaseView(UIMaster master)
+        private static void GenerateViews(UIMaster master)
         {
-            var viewName = master.name + "BaseView";
+            GenerateView(master, null);
+            foreach (var view in master.GetComponentsInChildren<UIView>(true))
+            {
+                GenerateView(master, view);
+            }
+        }
+
+        private static void GenerateView(UIMaster master, UIView view)
+        {
+            var viewName = master.name + (view == null ? "BaseView" : view.name);
             var templateFile = Path.Combine(PanelTemplatePath, "Generated", "#ViewName#.lua");
             var templateContents = File.ReadAllText(templateFile);
             var outputFile = templateFile.Replace("@PanelTemplate", master.name).Replace("#ViewName#", viewName);
@@ -105,26 +114,55 @@ namespace TZUI
             }
             var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
 
-            var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
-            var removeForeachEvent = new Regex(@"\n--([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
-            var replaceEvent = new Regex(@"\n([^@]*)#EventName#([\s\S]*)", RegexOptions.Compiled);
-
-            while (foreachEvent.IsMatch(outputContents))
+            #region foreach events
             {
-                var events = master.Events;
-                for (var i = events.Count - 1; i >= 0; --i)
+                var foreachEvent = new Regex(@"\n([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
+                var removeForeachEvent = new Regex(@"\n--([ \t]*)(@foreach EventName@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
+                var replaceEvent = new Regex(@"\n([^@]*)#EventName#([\s\S]*)", RegexOptions.Compiled);
+
+                while (foreachEvent.IsMatch(outputContents))
                 {
-                    var eventName = events[i];
-                    if (string.IsNullOrEmpty(eventName))
-                        continue;
-                    outputContents = foreachEvent.Replace(outputContents, "\n$1$2$3$4\n$1$3");
-                    while (replaceEvent.IsMatch(outputContents))
-                        outputContents = replaceEvent.Replace(outputContents, "\n$1" + eventName + "$2");
+                    var events = view == null ? master.Events : view.Events;
+                    for (var i = events.Count - 1; i >= 0; --i)
+                    {
+                        var eventName = events[i];
+                        if (string.IsNullOrEmpty(eventName))
+                            continue;
+                        outputContents = foreachEvent.Replace(outputContents, "\n$1$2$3$4\n$1$3");
+                        while (replaceEvent.IsMatch(outputContents))
+                            outputContents = replaceEvent.Replace(outputContents, "\n$1" + eventName + "$2");
+                    }
+                    outputContents = foreachEvent.Replace(outputContents, "\n--$1$2$3$4");
                 }
-                outputContents = foreachEvent.Replace(outputContents, "\n--$1$2$3$4");
+                while (removeForeachEvent.IsMatch(outputContents))
+                    outputContents = removeForeachEvent.Replace(outputContents, "");
             }
-            while (removeForeachEvent.IsMatch(outputContents))
-                outputContents = removeForeachEvent.Replace(outputContents, "");
+            #endregion
+
+            #region foreach widgets
+            {
+                var foreachWidget = new Regex(@"\n([ \t]*)(@foreach Widget@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
+                var removeForeachWidget = new Regex(@"\n--([ \t]*)(@foreach Widget@ )([\s\S]*)( @end@)", RegexOptions.Compiled);
+                var replaceWidgetType = new Regex(@"\n([^@]*)#WidgetType#([\s\S]*)", RegexOptions.Compiled);
+                var replaceWidgetName = new Regex(@"\n([^@]*)#WidgetName#([\s\S]*)", RegexOptions.Compiled);
+                var root = view == null ? master.gameObject : view.gameObject;
+                while (foreachWidget.IsMatch(outputContents))
+                {
+                    foreach ( var widget in root.GetComponentsInChildren<UIWidget>(true))
+                    {
+                        var parentView = widget.GetComponentInParentHard<UIView>();
+                        if (parentView == null || parentView == view)
+                        {
+
+                        }
+                    }
+                    outputContents = foreachWidget.Replace(outputContents, "\n--$1$2$3$4");
+                }
+                while (removeForeachWidget.IsMatch(outputContents))
+                    outputContents = removeForeachWidget.Replace(outputContents, "");
+            }
+            #endregion
+
             WriteAllText(outputFile, outputContents);
             File.SetAttributes(outputFile, FileAttributes.ReadOnly);
 
