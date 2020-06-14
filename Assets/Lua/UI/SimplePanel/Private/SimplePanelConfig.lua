@@ -14,11 +14,16 @@ SimplePanelConfig.SimplePanelBaseView = {}
 
 -- 哦哦哦
 SimplePanelConfig.SimplePanelBaseView.CloseButton = {
-    CloseDelay = 0, -- 延时关闭
+    CloseDelay = 10, -- 延时关闭
 }
 
 -- 哦哦哦
 SimplePanelConfig.SimplePanelBaseView.CloseButton2 = {
+    CloseDelay = 0, -- 延时关闭
+}
+
+-- 哦哦哦
+SimplePanelConfig.SimplePanelBaseView.CloseButton3 = {
     CloseDelay = 0, -- 延时关闭
 }
 

@@ -2,7 +2,7 @@ local SimplePanelBaseView = require("UI.SimplePanel.Generated.SimplePanelBaseVie
 
 -- 刷新全部显示
 function SimplePanelBaseView:RefreshAll()
-
+    self.vt.bbb:SetString(self.panel.config.TestOne + 1)
 end
 
 function SimplePanelBaseView:OnButtonClick()
@@ -11,6 +11,9 @@ end
 
 function SimplePanelBaseView:OnButtonClick2()
     local a = 1
+end
+
+function SimplePanelBaseView:OnButtonClick3()
 end
 
 

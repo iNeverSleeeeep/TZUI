@@ -750,5 +750,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimplePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_Events.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177379305830124205, guid: 2498db61337be5541b49fc90b5d8cb33,
+        type: 3}
+      propertyPath: m_Binder.m_Events.Array.data[2]
+      value: OnButtonClick3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2498db61337be5541b49fc90b5d8cb33, type: 3}

@@ -1,7 +1,7 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local #ViewName# = BaseClass(nil, "#ViewName#")
-@foreach Widget@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
+@foreach WidgetType@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
 
 function #ViewName#:Load(panel, root)
     self.panel = panel

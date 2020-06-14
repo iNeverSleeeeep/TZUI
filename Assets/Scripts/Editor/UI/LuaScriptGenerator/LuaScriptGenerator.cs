@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -141,11 +142,32 @@ namespace TZUI
 
             #region foreach widgets
             {
+                var foreachWidgetType = new Regex(@"\n([ \t]*)(@foreach WidgetType@ )([^@]*)( @end@)", RegexOptions.Compiled);
                 var foreachWidget = new Regex(@"\n([ \t]*)(@foreach Widget@ )([^@]*)( @end@)", RegexOptions.Compiled);
+                var removeForeachWidgetType = new Regex(@"\n--([ \t]*)(@foreach WidgetType@ )([^@]*)( @end@)", RegexOptions.Compiled);
                 var removeForeachWidget = new Regex(@"\n--([ \t]*)(@foreach Widget@ )([^@]*)( @end@)", RegexOptions.Compiled);
                 var replaceWidgetType = new Regex(@"\n([^@]*)#WidgetType#([^@]*\n)", RegexOptions.Compiled);
                 var replaceWidgetName = new Regex(@"\n([^@]*)#WidgetName#([^@]*\n)", RegexOptions.Compiled);
                 var root = view == null ? master.gameObject : view.gameObject;
+                while (foreachWidgetType.IsMatch(outputContents))
+                {
+                    var widgetsTypes = new  List<Type>();
+                    var widgets = new List<UIWidget>(root.GetComponentsInChildren<UIWidget>(true));
+                    foreach (var widget in widgets)
+                    {
+                        if (widgetsTypes.Contains(widget.GetType()) == false)
+                            widgetsTypes.Add(widget.GetType());
+                    }
+                    foreach (var type in widgetsTypes)
+                    {
+                        outputContents = foreachWidgetType.Replace(outputContents, "\n$1$2$3$4\n$1$3");
+                        while (replaceWidgetType.IsMatch(outputContents))
+                            outputContents = replaceWidgetType.Replace(outputContents, "\n$1" + type.Name + "$2");
+                    }
+                    outputContents = foreachWidgetType.Replace(outputContents, "\n--$1$2$3$4");
+                }
+                while (removeForeachWidgetType.IsMatch(outputContents))
+                    outputContents = removeForeachWidgetType.Replace(outputContents, "");
                 while (foreachWidget.IsMatch(outputContents))
                 {
                     var widgets = new List<UIWidget>(root.GetComponentsInChildren<UIWidget>(true));
