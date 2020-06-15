@@ -30,7 +30,9 @@ namespace TZUI
                 AssetDatabase.StartAssetEditing();
                 try
                 {
+                    AddWidgetToBinder();
                     LuaScriptGenerator.Generate(target as UIMaster);
+
                     PrefabUtility.ApplyPrefabInstance((target as UIMaster).gameObject, InteractionMode.AutomatedAction);
                 }
                 finally

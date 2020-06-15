@@ -544,7 +544,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Binder:
-    m_ObjectBinds: []
+    m_ObjectBinds:
+    - {fileID: 15088505}
+    - {fileID: 1354371112947780702}
+    - {fileID: 4729247437809998659}
     m_Events:
     - OnButtonClick
     - OnButtonClick2

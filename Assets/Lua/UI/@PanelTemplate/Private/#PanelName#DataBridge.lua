@@ -1,4 +1,4 @@
-local #PanelName#DataBridge = require("UI.#PanelName#.Generated.#PanelName#DataBridge")
+local #PanelName#DataBridge = BaseClass(require("UI.#PanelName#.Generated.#PanelName#DataBridge"))
 
 
 return #PanelName#DataBridge

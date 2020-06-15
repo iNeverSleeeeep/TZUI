@@ -119,10 +119,15 @@ public class LuaHotLoader : MonoBehaviour
 local hot = require('hot')
 local rawrequire = require
 local cache = {}
-local loaded = package.loaded
+
+function release(path)
+    package.loaded[path] = nil
+    cache[path] = nil
+end
+
 function require(path)
-    if loaded[path] ~= nil then
-        return loaded[path]
+    if package.loaded[path] ~= nil then
+        return package.loaded[path]
     end
     if cache[path] == nil then
         local ret = rawrequire(path)
@@ -144,15 +149,14 @@ function require(path)
         if type(ret) == 'table' then
             for k, v in pairs(ret) do
                 if type(v) == 'function' then
-                    if functions[k] == nil then
-                        raw[k] = v
+                    if functions[k] ~= nil then
+                        hot.setlfunc(functions[k], v)
                     else
-                        hot.swaplfunc(functions[k], v)
-                        raw[k] = functions[k]
+                        raw[k] = v
                     end
                 end
             end
-            loaded[path] = raw
+            package.loaded[path] = raw
             return raw
         else
             return ret
@@ -160,12 +164,15 @@ function require(path)
     end
 end
 function hotreload(...)
+    collectgarbage('collect')
+    collectgarbage('stop')
     for i, path in ipairs({...}) do
         package.loaded[path] = nil
     end
     for i, path in ipairs({...}) do
         require(path)
     end
+    collectgarbage('restart')
 end
 ";
 }

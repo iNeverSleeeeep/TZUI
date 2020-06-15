@@ -3,7 +3,7 @@ local Bind = require('Common.HelperFunctions').Bind
 local CloseButtonWidget = BaseClass()
 
 function CloseButtonWidget:Bind(root, panel, config)
-    self.root = widget
+    self.root = root
     self.panel = panel
     self.config = config
     

@@ -17,16 +17,16 @@ function #ViewName#:Load(panel, root)
 
     @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
 
-    @foreach Widget@ self.#WidgetName# = #WidgetType#.New():Load(self.ot.#WidgetName#, self, panel.config.#PanelName##ViewName#.#WidgetName#)  @end@
+    @foreach Widget@ self.#WidgetName# = #WidgetType#.New():Bind(self.ot.#WidgetName#, self, panel.config.#ViewName#.#WidgetName#)  @end@
 
-    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index!") end
+    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! #ViewName#") end
     return self
 end
 
 function #ViewName#:Release()
     self.et:ClearAllEvents()
 
-    @foreach Widget@ self.#WidgetName#:Release()
+    @foreach Widget@ self.#WidgetName#:UnBind()
     self.#WidgetName# = nil @end@
 
     if self.root ~= self.panel.root then

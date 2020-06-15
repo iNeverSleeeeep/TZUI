@@ -33,6 +33,7 @@ function SimplePanel:Load()
     self.views = setmetatable(_views, {__index=_loadView})
 
     self.baseview = _require("UI.SimplePanel.Private.SimplePanelBaseView").New():Load(self, self.root)
+    return self
 end
 
 function SimplePanel:Release()
@@ -43,8 +44,9 @@ function SimplePanel:Release()
     self.db:Release()
     self.db = nil
     for k, v in pairs(_required) do
-        package.loaded[k] = nil
+        release(k)
     end
+    release("UI.SimplePanel.Generated.SimplePanel")
     if IsNull(self.root) == false then
         CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
     end

@@ -33,6 +33,7 @@ function #PanelName#:Load()
     self.views = setmetatable(_views, {__index=_loadView})
 
     self.baseview = _require("UI.#PanelName#.Private.#PanelName#BaseView").New():Load(self, self.root)
+    return self
 end
 
 function #PanelName#:Release()
@@ -43,8 +44,9 @@ function #PanelName#:Release()
     self.db:Release()
     self.db = nil
     for k, v in pairs(_required) do
-        package.loaded[k] = nil
+        release(k)
     end
+    release("UI.#PanelName#.Generated.#PanelName#")
     if IsNull(self.root) == false then
         CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
     end

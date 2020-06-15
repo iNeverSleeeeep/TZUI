@@ -1,4 +1,4 @@
-local SimplePanelBaseView = require("UI.SimplePanel.Generated.SimplePanelBaseView")
+local SimplePanelBaseView = BaseClass(require("UI.SimplePanel.Generated.SimplePanelBaseView"))
 
 -- 刷新全部显示
 function SimplePanelBaseView:RefreshAll()
@@ -6,7 +6,8 @@ function SimplePanelBaseView:RefreshAll()
 end
 
 function SimplePanelBaseView:OnButtonClick()
-    self.vt.bbb:SetString(self.panel.config.TestOne)
+    GUIManager:Open("TipsPanel")
+    self.vt.bbb:SetString(y or "nil")
 end
 
 function SimplePanelBaseView:OnButtonClick2()

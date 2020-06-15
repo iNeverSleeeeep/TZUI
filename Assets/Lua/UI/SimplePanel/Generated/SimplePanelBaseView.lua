@@ -19,22 +19,22 @@ function SimplePanelBaseView:Load(panel, root)
     self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
     self.et:ListenEvent("OnButtonClick3", Bind(self.OnButtonClick3, self))
 
-    self.CloseButton = CloseButtonWidget.New():Load(self.ot.CloseButton, self, panel.config.SimplePanelSimplePanelBaseView.CloseButton) 
-    self.CloseButton2 = CloseButtonWidget.New():Load(self.ot.CloseButton2, self, panel.config.SimplePanelSimplePanelBaseView.CloseButton2) 
-    self.CloseButton3 = CloseButtonWidget.New():Load(self.ot.CloseButton3, self, panel.config.SimplePanelSimplePanelBaseView.CloseButton3) 
+    self.CloseButton = CloseButtonWidget.New():Bind(self.ot.CloseButton, self, panel.config.SimplePanelBaseView.CloseButton) 
+    self.CloseButton2 = CloseButtonWidget.New():Bind(self.ot.CloseButton2, self, panel.config.SimplePanelBaseView.CloseButton2) 
+    self.CloseButton3 = CloseButtonWidget.New():Bind(self.ot.CloseButton3, self, panel.config.SimplePanelBaseView.CloseButton3) 
 
-    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index!") end
+    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! SimplePanelBaseView") end
     return self
 end
 
 function SimplePanelBaseView:Release()
     self.et:ClearAllEvents()
 
-    self.CloseButton:Release()
+    self.CloseButton:UnBind()
     self.CloseButton = nil
-    self.CloseButton2:Release()
+    self.CloseButton2:UnBind()
     self.CloseButton2 = nil
-    self.CloseButton3:Release()
+    self.CloseButton3:UnBind()
     self.CloseButton3 = nil
 
     if self.root ~= self.panel.root then
