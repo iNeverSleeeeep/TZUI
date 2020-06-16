@@ -5,7 +5,7 @@ namespace TZUI
 {
     public class UIVariableBindBaseInspector : Editor
     {
-        protected UIMaster m_VariableTable;
+        protected UINode m_VariableTable;
         static GUIContent VariableTableContent = new GUIContent("VariableTable");
         SerializedProperty m_VariableTableProperty;
 
@@ -17,8 +17,8 @@ namespace TZUI
                 var binder = t as UIVariableBindBase;
                 var table = binder.VariableTable;
                 if (m_VariableTable == null)
-                    m_VariableTable = table as UIMaster;
-                else if (m_VariableTable != table as UIMaster)
+                    m_VariableTable = table as UINode;
+                else if (m_VariableTable != table as UINode)
                 {
                     m_VariableTable = null;
                     break;

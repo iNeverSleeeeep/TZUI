@@ -8,7 +8,8 @@ function TipsPanelBaseView:Load(panel, root)
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root or CS.UnityEngine.Resources.Load("TipsPanelBaseView").transform
+    self.root = root or CS.UnityEngine.Resources.Load("Output/TipsPanelBaseView").transform
+    self.ownroot = self.root ~= root
     self.root.localScale = {x=1,y=1,z=1}
     self.root.anchorMin = {x=0,y=0}
     self.root.anchorMax = {x=1,y=1}
@@ -20,6 +21,8 @@ function TipsPanelBaseView:Load(panel, root)
     self.CloseButtonWidget = CloseButtonWidget.New():Bind(self.ot.CloseButtonWidget, self, panel.config.TipsPanelBaseView.CloseButtonWidget) 
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! TipsPanelBaseView") end
+
+    self:RefreshAll()
     return self
 end
 
@@ -29,7 +32,7 @@ function TipsPanelBaseView:Release()
     self.CloseButtonWidget:UnBind()
     self.CloseButtonWidget = nil
 
-    if self.root ~= self.panel.root then
+    if self.ownroot then
         if IsNull(self.root) == false then
             CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
         end

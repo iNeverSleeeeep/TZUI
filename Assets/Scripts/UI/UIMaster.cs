@@ -8,6 +8,7 @@ using UnityObject = UnityEngine.Object;
 
 namespace TZUI
 {
+    [DisallowMultipleComponent]
     public class UIMaster : UINode
     {
 

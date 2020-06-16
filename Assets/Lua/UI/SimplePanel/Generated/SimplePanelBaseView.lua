@@ -8,7 +8,8 @@ function SimplePanelBaseView:Load(panel, root)
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root or CS.UnityEngine.Resources.Load("SimplePanelBaseView").transform
+    self.root = root or CS.UnityEngine.Resources.Load("Output/SimplePanelBaseView").transform
+    self.ownroot = self.root ~= root
     self.root.localScale = {x=1,y=1,z=1}
     self.root.anchorMin = {x=0,y=0}
     self.root.anchorMax = {x=1,y=1}
@@ -24,6 +25,8 @@ function SimplePanelBaseView:Load(panel, root)
     self.CloseButton3 = CloseButtonWidget.New():Bind(self.ot.CloseButton3, self, panel.config.SimplePanelBaseView.CloseButton3) 
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! SimplePanelBaseView") end
+
+    self:RefreshAll()
     return self
 end
 
@@ -37,7 +40,7 @@ function SimplePanelBaseView:Release()
     self.CloseButton3:UnBind()
     self.CloseButton3 = nil
 
-    if self.root ~= self.panel.root then
+    if self.ownroot then
         if IsNull(self.root) == false then
             CS.UnityEngine.GameObject.Destroy(self.root.gameObject)
         end

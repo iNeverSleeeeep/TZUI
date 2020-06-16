@@ -11,6 +11,7 @@ TipsPanelConfig = {
 }
 
 TipsPanelConfig.TipsPanelBaseView = {}
+TipsPanelConfig.TipsPanelInfoView = {}
 
 -- 哦哦哦
 TipsPanelConfig.TipsPanelBaseView.CloseButtonWidget = {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 namespace TZUI
 {
     [CustomEditor(typeof(UIMaster))]
+    [CanEditMultipleObjects]
     public class UIMasterInspector : UINodeInspector
     {
 
@@ -18,7 +19,8 @@ namespace TZUI
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            base.OnInspectorGUI();
+            if (targets.Length == 1)
+                base.OnInspectorGUI();
             DrawPublish();
             serializedObject.ApplyModifiedProperties();
         }
@@ -30,10 +32,16 @@ namespace TZUI
                 AssetDatabase.StartAssetEditing();
                 try
                 {
-                    AddWidgetToBinder();
-                    LuaScriptGenerator.Generate(target as UIMaster);
+                    if (targets.Length == 1)
+                    {
+                        AddWidgetToBinder();
+                    }
 
-                    PrefabUtility.ApplyPrefabInstance((target as UIMaster).gameObject, InteractionMode.AutomatedAction);
+                    foreach (var origin in targets)
+                    {
+                        LuaScriptGenerator.Generate(origin as UIMaster);
+                        Save(origin as UIMaster);
+                    }
                 }
                 finally
                 {
@@ -41,6 +49,37 @@ namespace TZUI
                     AssetDatabase.Refresh();
                 }
 
+            }
+        }
+
+        private static void Save(UIMaster origin)
+        {
+            UIMaster master = null;
+            try
+            {
+                master = GameObject.Instantiate((origin as UIMaster).gameObject).GetComponent<UIMaster>();
+                master.gameObject.name = origin.name;
+                SplitDelayLoadViews(master);
+                PrefabUtility.SaveAsPrefabAsset(master.gameObject, "Assets/Resources/Output/" + master.name + ".prefab");
+                PrefabUtility.SaveAsPrefabAsset((origin as UIMaster).gameObject, "Assets/Resources/" + master.name + ".prefab");
+                GameObject.DestroyImmediate(master.gameObject);
+            }
+            finally
+            {
+                if (master != null)
+                    GameObject.DestroyImmediate(master.gameObject);
+            }
+            Debug.Log("Save " + origin.name);
+        }
+
+        private static void SplitDelayLoadViews(UIMaster master)
+        {
+            foreach (var view in master.GetComponentsInChildren<UIView>(true))
+            {
+                if (view.LoadMode == UIViewLoadMode.Always)
+                    continue;
+                PrefabUtility.SaveAsPrefabAsset(view.gameObject, "Assets/Resources/Output/" + master.name + view.name + ".prefab");
+                GameObject.DestroyImmediate(view.gameObject);
             }
         }
     }

@@ -15,6 +15,8 @@ namespace TZUI
 
         protected override void OnValueChanged()
         {
+            if (this == null)
+                return;
             if (m_Text == null)
                 m_Text = GetComponent<Text>();
 
