@@ -1,6 +1,4 @@
 local SimplePanelBaseView = BaseClass(require("UI.SimplePanel.Generated.SimplePanelBaseView"))
-local y = 1
-local z = 200
 
 -- 刷新全部显示
 function SimplePanelBaseView:RefreshAll()
@@ -9,10 +7,6 @@ end
 
 function SimplePanelBaseView:OnButtonClick()
     GUIManager:Open("TipsPanel")
-    y = y - 200
-    z = z + y
-    LogD(z)
-    self.vt.bbb:SetString(y or "nil")
 end
 
 function SimplePanelBaseView:OnButtonClick2()

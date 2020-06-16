@@ -6,9 +6,9 @@ namespace TZUI
     public abstract class UIEventBindBase : MonoBehaviour
     {
         [SerializeField]
-        private UIMaster m_EventTable;
+        private UINode m_EventTable;
 
-        public UIMaster EventTable
+        public UINode EventTable
         {
             get
             {
@@ -24,7 +24,7 @@ namespace TZUI
         private void RefreshEventTable()
         {
             if (m_EventTable == null)
-                m_EventTable = this.GetComponentInParentHard<UIMaster>();
+                m_EventTable = this.GetComponentInParentHard<UINode>();
         }
 
         internal UISignal FindEvent(string name)
@@ -37,6 +37,12 @@ namespace TZUI
 
 #if UNITY_EDITOR
         public abstract bool IsListenEvent(string eventName);
+
+        private void OnValidate()
+        {
+            m_EventTable = null;
+            RefreshEventTable();
+        }
 #endif
     }
 }

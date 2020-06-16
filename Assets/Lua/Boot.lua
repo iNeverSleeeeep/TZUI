@@ -1,6 +1,5 @@
 require("Common.Log")
 require("Common.BaseClass")
-CS.UnityEngine.Debug.Log("ok")
 UIRoot = CS.UnityEngine.GameObject.Find("UIRoot")
 GUIManager = require("UI.UIManager").New()
 
@@ -16,5 +15,5 @@ function Update()
 end
 
 function Destroy()
-    GUIManager:Close("SimplePanel")
+    GUIManager:Release()
 end

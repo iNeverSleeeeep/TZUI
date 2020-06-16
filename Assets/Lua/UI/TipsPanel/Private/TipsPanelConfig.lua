@@ -12,4 +12,9 @@ TipsPanelConfig = {
 
 TipsPanelConfig.TipsPanelBaseView = {}
 
+-- 哦哦哦
+TipsPanelConfig.TipsPanelBaseView.CloseButtonWidget = {
+    CloseDelay = 0, -- 延时关闭
+}
+
 return setmetatable(TipsPanelConfig, {__newindex = function() end})

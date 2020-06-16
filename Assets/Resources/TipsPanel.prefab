@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5253855337970549953}
   - component: {fileID: 5253855337970549958}
   - component: {fileID: 5253855337970549959}
-  - component: {fileID: 5253855337970549952}
+  - component: {fileID: 6008492065452026707}
+  - component: {fileID: 5253855339470326608}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CloseButtonWidget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -233, y: -96}
+  m_AnchoredPosition: {x: 396, y: 174}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5253855337970549953
@@ -120,7 +121,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5253855337970549952
+--- !u!114 &6008492065452026707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253855337970549957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e554d3b0a559d4493a228526673661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Binder:
+    m_ObjectBinds: []
+    m_Events:
+    - OnCloseClick
+    m_VariableBinds: []
+--- !u!114 &5253855339470326608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventTable: {fileID: 5253855338284631187}
-  m_EventName: OnTipsClose
+  m_EventTable: {fileID: 6008492065452026707}
+  m_EventName: OnCloseClick
 --- !u!1 &5253855338242953446
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Binder:
-    m_ObjectBinds: []
+    m_ObjectBinds:
+    - {fileID: 6008492065452026707}
     m_Events:
     - OnTipsClose
     m_VariableBinds: []

@@ -7,7 +7,7 @@ namespace TZUI
     [CanEditMultipleObjects]
     public class UIEventBindBaseInspector : Editor
     {
-        protected UIMaster m_EventTable;
+        protected UINode m_EventTable;
         static GUIContent EventTableContent = new GUIContent("EventTable");
         SerializedProperty m_EventTableProperty;
 
@@ -19,8 +19,8 @@ namespace TZUI
                 var binder = t as UIEventBindBase;
                 var table = binder.EventTable;
                 if (m_EventTable == null)
-                    m_EventTable = table as UIMaster;
-                else if (m_EventTable != table as UIMaster)
+                    m_EventTable = table as UINode;
+                else if (m_EventTable != table as UINode)
                 {
                     m_EventTable = null;
                     break;

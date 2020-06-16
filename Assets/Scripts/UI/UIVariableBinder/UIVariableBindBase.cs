@@ -6,9 +6,9 @@ namespace TZUI
     public abstract class UIVariableBindBase : MonoBehaviour
     {
         [SerializeField]
-        private UIMaster m_VariableTable;
+        private UINode m_VariableTable;
 
-        public UIMaster VariableTable
+        public UINode VariableTable
         {
             get
             {
@@ -30,7 +30,7 @@ namespace TZUI
         private void RefreshVariableTable()
         {
             if (m_VariableTable == null)
-                m_VariableTable = this.GetComponentInParentHard<UIMaster>();
+                m_VariableTable = this.GetComponentInParentHard<UINode>();
         }
 
         internal UIVariable FindVariable(string name)

@@ -2,9 +2,10 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local CloseButtonWidget = BaseClass()
 
-function CloseButtonWidget:Bind(root, panel, config)
+function CloseButtonWidget:Bind(root, view, config)
     self.root = root
-    self.panel = panel
+    self.view = view
+    self.panel = view.panel
     self.config = config
     
     UIHelper.InitUITable(self.root, self)
@@ -20,7 +21,7 @@ function CloseButtonWidget:UnBind()
 end
 
 function CloseButtonWidget:OnCloseClick()
-    self.panel:Release()
+    GUIManager:Close(self.panel.name)
 end
 
 return CloseButtonWidget
