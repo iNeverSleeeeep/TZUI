@@ -690,7 +690,8 @@ static void freeLclosure (lua_State *L, LClosure *cl) {
     if (uv)
       luaC_upvdeccount(L, uv);
   }
-  luaM_freemem(L, cl, sizeLclosure(cl->nupvalues));
+  luaM_freemem(L, cl->upvals, cast(int, sizeof(UpVal *)*(cl->nupvalues)));
+  luaM_freemem(L, cl, cast(int, sizeof(LClosure)));
 }
 
 

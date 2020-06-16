@@ -6,10 +6,13 @@
 #else
 #include "lobject.h"
 #include "lstate.h"
+#include "lfunc.h"
+#include "lgc.h"
 #endif
 
 #if USING_LUAJIT
-static int hot_swaplfunc(lua_State *L)
+// FIXME
+static int hot_setlfunc(lua_State *L)
 {
     TValue *o1, *o2;
     MRef ptr1, ptr2;
@@ -30,36 +33,38 @@ static int hot_swaplfunc(lua_State *L)
 }
 #else
 
-static int hot_swaplfunc(lua_State *L)
-{
-    StkId o1, o2;
-    Proto *p1, *p2;
-
-    luaL_checktype(L, 1, LUA_TFUNCTION);
-    luaL_checktype(L, 2, LUA_TFUNCTION);
-
-    o1 = L->ci->func + 1;
-    o2 = L->ci->func + 2;
-
-    p1 = getproto(o1);
-    p2 = getproto(o2);
-    getproto(o1) = p2;
-    getproto(o2) = p1;
-    
-    lua_settop(L, 0);
-    return 0;
-}
-
 static int hot_setlfunc(lua_State *L)
 {
     StkId o1, o2;
-    Proto *p1, *p2;
-
+    LClosure *f1, *f2;
+    int i;
+    
     luaL_checktype(L, 1, LUA_TFUNCTION);
     luaL_checktype(L, 2, LUA_TFUNCTION);
 
     o1 = L->ci->func + 1;
     o2 = L->ci->func + 2;
+    f1 = clLvalue(o1);
+    f2 = clLvalue(o2);
+
+    for (i = 0; i < f1->nupvalues; i++) {
+        UpVal *uv = f1->upvals[i];
+        if (uv)
+            luaC_upvdeccount(L, uv);
+        f1->upvals[i] = NULL;
+    }
+    luaM_freemem(L, f1->upvals, cast(int, sizeof(UpVal *)*(f1->nupvalues)));
+    f1->nupvalues = f2->nupvalues;
+    f1->upvals = cast(UpVal **, luaM_malloc(L, sizeof(UpVal *)*(f1->nupvalues)));
+
+    for (i = 0; i < f1->nupvalues; i++) {
+        UpVal **up1 = &(f1->upvals[i]);
+        UpVal **up2 = &(f2->upvals[i]);
+        *up1 = *up2;
+        (*up1)->refcount++;
+        if (upisopen(*up1)) (*up1)->u.open.touched = 1;
+        luaC_upvalbarrier(L, *up1);
+    }
 
     getproto(o1) = getproto(o2);
     
@@ -70,7 +75,6 @@ static int hot_setlfunc(lua_State *L)
 
 static const struct luaL_Reg hot_funcs[] = 
 {
-    { "swaplfunc", hot_swaplfunc},
     { "setlfunc", hot_setlfunc},
 	{ NULL, NULL }
 };

@@ -31,10 +31,11 @@ CClosure *luaF_newCclosure (lua_State *L, int n) {
 
 
 LClosure *luaF_newLclosure (lua_State *L, int n) {
-  GCObject *o = luaC_newobj(L, LUA_TLCL, sizeLclosure(n));
+  GCObject *o = luaC_newobj(L, LUA_TLCL, cast(int, sizeof(LClosure)));
   LClosure *c = gco2lcl(o);
   c->p = NULL;
   c->nupvalues = cast_byte(n);
+  c->upvals = cast(UpVal **, luaM_malloc(L, sizeof(UpVal *)*(c->nupvalues)));
   while (n--) c->upvals[n] = NULL;
   return c;
 }
