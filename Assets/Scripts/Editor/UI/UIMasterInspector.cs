@@ -58,6 +58,7 @@ namespace TZUI
             try
             {
                 master = GameObject.Instantiate((origin as UIMaster).gameObject).GetComponent<UIMaster>();
+                master.gameObject.SetActive(true);
                 master.gameObject.name = origin.name;
                 SplitDelayLoadViews(master);
                 PrefabUtility.SaveAsPrefabAsset(master.gameObject, "Assets/Resources/Output/" + master.name + ".prefab");

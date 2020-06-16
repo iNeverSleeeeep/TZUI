@@ -2,12 +2,16 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelInfoView = BaseClass(nil, "TipsPanelInfoView")
 
-function TipsPanelInfoView:Load(panel, root)
+function TipsPanelInfoView:Load(panel, root, parent)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root or CS.UnityEngine.Resources.Load("Output/TipsPanelInfoView").transform
+    self.root = root
+    if self.root == nil then
+        local prefab = CS.UnityEngine.Resources.Load("Output/TipsPanelInfoView")
+        self.root = CS.UnityEngine.GameObject.Instantiate(prefab, parent).transform
+    end
     self.ownroot = self.root ~= root
     self.root.localScale = {x=1,y=1,z=1}
     self.root.anchorMin = {x=0,y=0}

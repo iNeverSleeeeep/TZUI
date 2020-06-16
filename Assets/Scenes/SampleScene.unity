@@ -133,6 +133,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: InfoView
       objectReference: {fileID: 0}
+    - target: {fileID: 1116087348, guid: 6cd7d2eed26c4014dab00ed5b4d90db6, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661338383357478446, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264053064967718895, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495850615386764540, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5253855338284631184, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
       propertyPath: m_Name
@@ -141,7 +160,17 @@ PrefabInstance:
     - target: {fileID: 5253855338284631184, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253855338284631187, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_Binder.m_Events.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253855338284631187, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_Binder.m_Events.Array.data[1]
+      value: OnLoadInfoViewClick
       objectReference: {fileID: 0}
     - target: {fileID: 5253855338284631215, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
@@ -772,7 +801,7 @@ PrefabInstance:
     - target: {fileID: 6177379305830124204, guid: 2498db61337be5541b49fc90b5d8cb33,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2498db61337be5541b49fc90b5d8cb33, type: 3}

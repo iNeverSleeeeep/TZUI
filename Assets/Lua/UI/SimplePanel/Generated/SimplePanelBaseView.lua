@@ -3,12 +3,16 @@ local Bind = require('Common.HelperFunctions').Bind
 local SimplePanelBaseView = BaseClass(nil, "SimplePanelBaseView")
 local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
-function SimplePanelBaseView:Load(panel, root)
+function SimplePanelBaseView:Load(panel, root, parent)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root or CS.UnityEngine.Resources.Load("Output/SimplePanelBaseView").transform
+    self.root = root
+    if self.root == nil then
+        local prefab = CS.UnityEngine.Resources.Load("Output/SimplePanelBaseView")
+        self.root = CS.UnityEngine.GameObject.Instantiate(prefab, parent).transform
+    end
     self.ownroot = self.root ~= root
     self.root.localScale = {x=1,y=1,z=1}
     self.root.anchorMin = {x=0,y=0}

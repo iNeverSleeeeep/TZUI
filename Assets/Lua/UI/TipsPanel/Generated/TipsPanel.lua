@@ -12,7 +12,7 @@ end
 local function _loadView(t, k)
     local view = _require("UI.TipsPanel.Private.TipsPanel"..k).New()
     rawset(_views, k, view)
-    view:Load(_panel)
+    view:Load(_panel, nil)
     return view
 end
 
@@ -25,7 +25,7 @@ function TipsPanel:Load()
     self.db = _require("UI.TipsPanel.Private.TipsPanelDataBridge").New():Load()
     self.views = setmetatable(_views, {__index = _loadView})
 
-    self.baseview = _require("UI.TipsPanel.Private.TipsPanelBaseView").New():Load(self, self.root)
+    self.baseview = _require("UI.TipsPanel.Private.TipsPanelBaseView").New():Load(self, self.root, UIRoot.transform)
     return self
 end
 
