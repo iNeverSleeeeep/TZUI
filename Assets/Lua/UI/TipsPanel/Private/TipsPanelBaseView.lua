@@ -5,7 +5,7 @@ function TipsPanelBaseView:RefreshAll()
 end
 
 function TipsPanelBaseView:OnTipsClose()
-    --GUIManager:Close("TipsPanel")
+    -- GUIManager:Close("TipsPanel")
 end
 
 function TipsPanelBaseView:OnLoadInfoViewClick()

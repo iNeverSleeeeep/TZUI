@@ -2,7 +2,7 @@ local TipsPanelInfoView = BaseClass(require("UI.TipsPanel.Generated.TipsPanelInf
 
 -- 刷新全部显示
 function TipsPanelInfoView:RefreshAll()
-    LogD("TipsPanelInfoView:RefreshAll")
+    --LogD("TipsPanelInfoView:RefreshAll")
 end
 
 

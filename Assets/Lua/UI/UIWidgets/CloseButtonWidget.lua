@@ -21,6 +21,7 @@ function CloseButtonWidget:UnBind()
 end
 
 function CloseButtonWidget:OnCloseClick()
+    LogD("OnCloseClick")
     GUIManager:Close(self.panel.name)
 end
 
