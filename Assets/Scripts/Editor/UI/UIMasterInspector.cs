@@ -32,13 +32,10 @@ namespace TZUI
                 AssetDatabase.StartAssetEditing();
                 try
                 {
-                    if (targets.Length == 1)
-                    {
-                        AddWidgetToBinder();
-                    }
-
                     foreach (var origin in targets)
                     {
+                        AddWidgetToBinder(origin as UINode);
+                        AddViewParentToBinder(origin as UINode);
                         LuaScriptGenerator.Generate(origin as UIMaster);
                         Save(origin as UIMaster);
                     }

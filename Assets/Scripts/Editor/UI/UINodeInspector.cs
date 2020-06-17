@@ -21,14 +21,15 @@ namespace TZUI
             EditorGUILayout.PropertyField(m_Binder);
         }
 
-        protected void AddWidgetToBinder()
+        protected static void AddWidgetToBinder(UINode node)
         {
-            foreach (var widget in (target as UINode).GetComponentsInChildren<UIWidget>(true))
+            var so = new SerializedObject(node);
+            var objectsBinds = so.FindProperty("m_Binder").FindPropertyRelative("m_ObjectBinds");
+            foreach (var widget in node.GetComponentsInChildren<UIWidget>(true))
             {
                 var view = widget.GetComponentInParentHard<UIView>();
-                if ((view == target) || (target is UIMaster) && view == null)
+                if ((view == node) || (node is UIMaster) && view == null)
                 {
-                    var objectsBinds = m_Binder.FindPropertyRelative("m_ObjectBinds");
                     var alreadyAdded = false;
                     for (var i = 0; i < objectsBinds.arraySize; ++i)
                     {
@@ -45,7 +46,31 @@ namespace TZUI
                     }
                 }
             }
-            serializedObject.ApplyModifiedProperties();
+            so.ApplyModifiedProperties();
+        }
+
+        protected static void AddViewParentToBinder(UINode node)
+        {
+            var so = new SerializedObject(node);
+            var objectsBinds = so.FindProperty("m_Binder").FindPropertyRelative("m_ObjectBinds");
+            foreach (var view in node.GetComponentsInChildren<UIView>(true))
+            {
+                var alreadyAdded = false;
+                for (var i = 0; i < objectsBinds.arraySize; ++i)
+                {
+                    if (objectsBinds.GetArrayElementAtIndex(i).objectReferenceValue == view.transform.parent)
+                    {
+                        alreadyAdded = true;
+                        break;
+                    }
+                }
+                if (alreadyAdded == false)
+                {
+                    objectsBinds.arraySize++;
+                    objectsBinds.GetArrayElementAtIndex(objectsBinds.arraySize - 1).objectReferenceValue = view.transform.parent;
+                }
+            }
+            so.ApplyModifiedProperties();
         }
     }
 }

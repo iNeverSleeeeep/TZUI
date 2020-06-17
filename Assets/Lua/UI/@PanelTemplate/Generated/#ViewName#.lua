@@ -3,7 +3,7 @@ local Bind = require('Common.HelperFunctions').Bind
 local #ViewName# = BaseClass(nil, "#ViewName#")
 @foreach WidgetType@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
 
-function #ViewName#:Load(panel, root, parent)
+function #ViewName#:Load(panel, parent, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
@@ -11,18 +11,22 @@ function #ViewName#:Load(panel, root, parent)
     self.root = root
     if self.root == nil then
         local prefab = CS.UnityEngine.Resources.Load("Output/#ViewName#")
-        self.root = CS.UnityEngine.GameObject.Instantiate(prefab, parent).transform
+        local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.#ParentName#RectTransform)
+        go.name = prefab.name
+        self.root = go.transform
     end
     self.ownroot = self.root ~= root
-    self.root.localScale = {x=1,y=1,z=1}
-    self.root.anchorMin = {x=0,y=0}
-    self.root.anchorMax = {x=1,y=1}
+    self.root.localScale = #LocalScale#
+    self.root.anchorMin = #AnchorMin#
+    self.root.anchorMax = #AnchorMax#
+    self.root.anchoredPosition = #AnchoredPosition#
+    self.root.sizeDelta = #SizeDelta#
 
     UIHelper.InitUITable(self.root, self)
 
     @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
 
-    @foreach Widget@ self.#WidgetName# = #WidgetType#.New():Bind(self.ot.#WidgetName#, self, panel.config.#ViewName#.#WidgetName#)  @end@
+    @foreach Widget@ self.#WidgetName# = #WidgetType#.New():Bind(self.ot.#WidgetName##WidgetType#, self, panel.config.#ViewName#.#WidgetName#)  @end@
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! #ViewName#") end
 

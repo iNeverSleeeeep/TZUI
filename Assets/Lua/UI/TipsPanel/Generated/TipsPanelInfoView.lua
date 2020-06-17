@@ -2,7 +2,7 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelInfoView = BaseClass(nil, "TipsPanelInfoView")
 
-function TipsPanelInfoView:Load(panel, root, parent)
+function TipsPanelInfoView:Load(panel, parent, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
@@ -10,12 +10,16 @@ function TipsPanelInfoView:Load(panel, root, parent)
     self.root = root
     if self.root == nil then
         local prefab = CS.UnityEngine.Resources.Load("Output/TipsPanelInfoView")
-        self.root = CS.UnityEngine.GameObject.Instantiate(prefab, parent).transform
+        local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.TipsPanelRectTransform)
+        go.name = prefab.name
+        self.root = go.transform
     end
     self.ownroot = self.root ~= root
-    self.root.localScale = {x=1,y=1,z=1}
-    self.root.anchorMin = {x=0,y=0}
-    self.root.anchorMax = {x=1,y=1}
+    self.root.localScale = {x=1, y=1, z=1}
+    self.root.anchorMin = {x=0.5, y=0.5}
+    self.root.anchorMax = {x=0.5, y=0.5}
+    self.root.anchoredPosition = {x=-261.1, y=9.1}
+    self.root.sizeDelta = {x=681.7734, y=429.7552}
 
     UIHelper.InitUITable(self.root, self)
 

@@ -114,6 +114,13 @@ namespace TZUI
                 File.Delete(outputFile);
             }
             var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
+            var rect = view == null ? master.GetComponent<RectTransform>() : view.GetComponent<RectTransform>();
+            outputContents = outputContents.Replace("#ParentName#", view == null ? "x" : rect.parent.name);
+            outputContents = outputContents.Replace("#LocalScale#", view != null ? $"{{x={rect.localScale.x}, y={rect.localScale.y}, z={rect.localScale.z}}}" : "{x=1,y=1,z=1}");
+            outputContents = outputContents.Replace("#AnchorMin#", view != null ? $"{{x={rect.anchorMin.x}, y={rect.anchorMin.y}}}" : "{x=0,y=0}");
+            outputContents = outputContents.Replace("#AnchorMax#", view != null ? $"{{x={rect.anchorMax.x}, y={rect.anchorMax.y}}}" : "{x=1,y=1}");
+            outputContents = outputContents.Replace("#AnchoredPosition#", view != null ? $"{{x={rect.anchoredPosition.x}, y={rect.anchoredPosition.y}}}" : "{x=0,y=0}");
+            outputContents = outputContents.Replace("#SizeDelta#", view != null ? $"{{x={rect.sizeDelta.x}, y={rect.sizeDelta.y}}}" : "{x=0,y=0}");
 
             #region foreach events
             {

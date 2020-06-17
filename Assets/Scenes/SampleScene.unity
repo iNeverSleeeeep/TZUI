@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 2495850615386764540, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5253855338284631184, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
@@ -160,7 +160,7 @@ PrefabInstance:
     - target: {fileID: 5253855338284631184, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5253855338284631187, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
@@ -169,8 +169,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253855338284631187, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
+      propertyPath: m_Binder.m_ObjectBinds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253855338284631187, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
       propertyPath: m_Binder.m_Events.Array.data[1]
       value: OnLoadInfoViewClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253855338284631187, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_Binder.m_ObjectBinds.Array.data[1]
+      value: 
+      objectReference: {fileID: 1732349399}
+    - target: {fileID: 5253855338284631213, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5253855338284631215, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
         type: 3}
@@ -615,6 +630,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!224 &1732349399 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5253855338284631215, guid: 6cd7d2eed26c4014dab00ed5b4d90db6,
+    type: 3}
+  m_PrefabInstance: {fileID: 152216577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1821609277
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +822,7 @@ PrefabInstance:
     - target: {fileID: 6177379305830124204, guid: 2498db61337be5541b49fc90b5d8cb33,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2498db61337be5541b49fc90b5d8cb33, type: 3}

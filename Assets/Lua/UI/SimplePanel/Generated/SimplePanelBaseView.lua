@@ -3,7 +3,7 @@ local Bind = require('Common.HelperFunctions').Bind
 local SimplePanelBaseView = BaseClass(nil, "SimplePanelBaseView")
 local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
-function SimplePanelBaseView:Load(panel, root, parent)
+function SimplePanelBaseView:Load(panel, parent, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
@@ -11,12 +11,16 @@ function SimplePanelBaseView:Load(panel, root, parent)
     self.root = root
     if self.root == nil then
         local prefab = CS.UnityEngine.Resources.Load("Output/SimplePanelBaseView")
-        self.root = CS.UnityEngine.GameObject.Instantiate(prefab, parent).transform
+        local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.xRectTransform)
+        go.name = prefab.name
+        self.root = go.transform
     end
     self.ownroot = self.root ~= root
     self.root.localScale = {x=1,y=1,z=1}
     self.root.anchorMin = {x=0,y=0}
     self.root.anchorMax = {x=1,y=1}
+    self.root.anchoredPosition = {x=0,y=0}
+    self.root.sizeDelta = {x=0,y=0}
 
     UIHelper.InitUITable(self.root, self)
 
@@ -24,9 +28,9 @@ function SimplePanelBaseView:Load(panel, root, parent)
     self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
     self.et:ListenEvent("OnButtonClick3", Bind(self.OnButtonClick3, self))
 
-    self.CloseButton = CloseButtonWidget.New():Bind(self.ot.CloseButton, self, panel.config.SimplePanelBaseView.CloseButton) 
-    self.CloseButton2 = CloseButtonWidget.New():Bind(self.ot.CloseButton2, self, panel.config.SimplePanelBaseView.CloseButton2) 
-    self.CloseButton3 = CloseButtonWidget.New():Bind(self.ot.CloseButton3, self, panel.config.SimplePanelBaseView.CloseButton3) 
+    self.CloseButton = CloseButtonWidget.New():Bind(self.ot.CloseButtonCloseButtonWidget, self, panel.config.SimplePanelBaseView.CloseButton) 
+    self.CloseButton2 = CloseButtonWidget.New():Bind(self.ot.CloseButton2CloseButtonWidget, self, panel.config.SimplePanelBaseView.CloseButton2) 
+    self.CloseButton3 = CloseButtonWidget.New():Bind(self.ot.CloseButton3CloseButtonWidget, self, panel.config.SimplePanelBaseView.CloseButton3) 
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! SimplePanelBaseView") end
 

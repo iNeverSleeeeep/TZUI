@@ -19,7 +19,12 @@ namespace TZUI
                 {
                     m_ObjectTable = new Dictionary<string, UnityObject>(StringComparer.Ordinal);
                     foreach (var obj in m_ObjectBinds)
-                        m_ObjectTable.Add(obj.name, obj);
+                    {
+                        if (obj is GameObject)
+                            m_ObjectTable.Add(obj.name, obj);
+                        else
+                            m_ObjectTable.Add(obj.name+obj.GetType().Name, obj);
+                    }
 #if !UNITY_EDITOR
                     m_ObjectBinds = null;
 #endif

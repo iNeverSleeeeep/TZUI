@@ -19,13 +19,15 @@ end
 function #PanelName#:Load()
     _panel = self
     local prefab = CS.UnityEngine.Resources.Load("Output/#PanelName#")
-    self.root = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform).transform
+    local go = CS.UnityEngine.GameObject.Instantiate(prefab, UIRoot.transform)
+    go.name = prefab.name
+    self.root = go.transform
     UIHelper.InitUITable(self.root, self)
     self.config = _require("UI.#PanelName#.Private.#PanelName#Config")
     self.db = _require("UI.#PanelName#.Private.#PanelName#DataBridge").New():Load()
     self.views = setmetatable(_views, {__index = _loadView})
 
-    self.baseview = _require("UI.#PanelName#.Private.#PanelName#BaseView").New():Load(self, self.root, UIRoot.transform)
+    self.baseview = _require("UI.#PanelName#.Private.#PanelName#BaseView").New():Load(self, UIRoot.transform, self.root)
     return self
 end
 
