@@ -3,12 +3,12 @@ local Bind = require('Common.HelperFunctions').Bind
 local #ViewName# = BaseClass(nil, "#ViewName#")
 @foreach WidgetType@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
 
-function #ViewName#:Load(panel, parent, root)
+function #ViewName#:Load(panel, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root
+    self.root = root or #ViewRoot#
     if self.root == nil then
         local prefab = CS.UnityEngine.Resources.Load("Output/#ViewName#")
         local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.#ParentName#RectTransform)

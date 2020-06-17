@@ -113,8 +113,10 @@ namespace TZUI
                 File.SetAttributes(outputFile, FileAttributes.Normal);
                 File.Delete(outputFile);
             }
-            var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
             var rect = view == null ? master.GetComponent<RectTransform>() : view.GetComponent<RectTransform>();
+
+            var outputContents = templateContents.Replace("#ViewName#", viewName).Replace("#PanelName#", master.name);
+            outputContents = outputContents.Replace("#ViewRoot#", view == null ? "nil" : (view.LoadMode == UIViewLoadMode.LoadOnUse ? "nil" : "panel.ot." + view.name + "RectTransform"));
             outputContents = outputContents.Replace("#ParentName#", view == null ? "x" : rect.parent.name);
             outputContents = outputContents.Replace("#LocalScale#", view != null ? $"{{x={rect.localScale.x}, y={rect.localScale.y}, z={rect.localScale.z}}}" : "{x=1,y=1,z=1}");
             outputContents = outputContents.Replace("#AnchorMin#", view != null ? $"{{x={rect.anchorMin.x}, y={rect.anchorMin.y}}}" : "{x=0,y=0}");

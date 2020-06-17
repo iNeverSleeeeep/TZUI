@@ -1,15 +1,15 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
-local TipsPanelInfoView = BaseClass(nil, "TipsPanelInfoView")
+local TipsPanelStaticView = BaseClass(nil, "TipsPanelStaticView")
 
-function TipsPanelInfoView:Load(panel, root)
+function TipsPanelStaticView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root or nil
+    self.root = root or panel.ot.StaticViewRectTransform
     if self.root == nil then
-        local prefab = CS.UnityEngine.Resources.Load("Output/TipsPanelInfoView")
+        local prefab = CS.UnityEngine.Resources.Load("Output/TipsPanelStaticView")
         local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.TipsPanelRectTransform)
         go.name = prefab.name
         self.root = go.transform
@@ -18,20 +18,20 @@ function TipsPanelInfoView:Load(panel, root)
     self.root.localScale = {x=1, y=1, z=1}
     self.root.anchorMin = {x=0.5, y=0.5}
     self.root.anchorMax = {x=0.5, y=0.5}
-    self.root.anchoredPosition = {x=-261.1, y=9.1}
-    self.root.sizeDelta = {x=681.7734, y=429.7552}
+    self.root.anchoredPosition = {x=0, y=0}
+    self.root.sizeDelta = {x=100, y=100}
 
     UIHelper.InitUITable(self.root, self)
 
 
 
-    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! TipsPanelInfoView") end
+    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! TipsPanelStaticView") end
 
     self:RefreshAll()
     return self
 end
 
-function TipsPanelInfoView:Release()
+function TipsPanelStaticView:Release()
     self.et:ClearAllEvents()
 
 
@@ -43,12 +43,12 @@ function TipsPanelInfoView:Release()
     self.root = nil
 end
 
-function TipsPanelInfoView:Show()
+function TipsPanelStaticView:Show()
 
 end
 
-function TipsPanelInfoView:Hide()
+function TipsPanelStaticView:Hide()
 
 end
 
-return TipsPanelInfoView
+return TipsPanelStaticView

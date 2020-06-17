@@ -18,12 +18,15 @@ namespace TZUI
                 if (m_ObjectTable == null)
                 {
                     m_ObjectTable = new Dictionary<string, UnityObject>(StringComparer.Ordinal);
-                    foreach (var obj in m_ObjectBinds)
+                    if (m_ObjectBinds != null)
                     {
-                        if (obj is GameObject)
-                            m_ObjectTable.Add(obj.name, obj);
-                        else
-                            m_ObjectTable.Add(obj.name+obj.GetType().Name, obj);
+                        foreach (var obj in m_ObjectBinds)
+                        {
+                            if (obj is GameObject)
+                                m_ObjectTable.Add(obj.name, obj);
+                            else
+                                m_ObjectTable.Add(obj.name + obj.GetType().Name, obj);
+                        }
                     }
 #if !UNITY_EDITOR
                     m_ObjectBinds = null;
@@ -47,7 +50,7 @@ namespace TZUI
 #if UNITY_EDITOR
         public List<string> Events
         {
-            get { return new List<string>(m_Events); }
+            get { return new List<string>(m_Events == null ? new string[] { } : m_Events); }
         }
 #endif
         private Dictionary<string, UISignal> m_EventTable;
@@ -109,8 +112,11 @@ namespace TZUI
             get
             {
                 var variables = new List<string>();
-                foreach (var v in m_VariableBinds)
-                    variables.Add(v.Name);
+                if (m_VariableBinds != null)
+                {
+                    foreach (var v in m_VariableBinds)
+                        variables.Add(v.Name);
+                }
                 return variables;
             }
         }

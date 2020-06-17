@@ -12,7 +12,7 @@ end
 local function _loadView(t, k)
     local view = _require("UI.SimplePanel.Private.SimplePanel"..k).New()
     rawset(_views, k, view)
-    view:Load(_panel, nil)
+    view:Load(_panel)
     return view
 end
 
@@ -27,7 +27,7 @@ function SimplePanel:Load()
     self.db = _require("UI.SimplePanel.Private.SimplePanelDataBridge").New():Load()
     self.views = setmetatable(_views, {__index = _loadView})
 
-    self.baseview = _require("UI.SimplePanel.Private.SimplePanelBaseView").New():Load(self, UIRoot.transform, self.root)
+    self.baseview = _require("UI.SimplePanel.Private.SimplePanelBaseView").New():Load(self, self.root)
     return self
 end
 

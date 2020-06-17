@@ -35,7 +35,7 @@ namespace TZUI
                     foreach (var origin in targets)
                     {
                         AddWidgetToBinder(origin as UINode);
-                        AddViewParentToBinder(origin as UINode);
+                        AddViewToBinder(origin as UINode);
                         LuaScriptGenerator.Generate(origin as UIMaster);
                         Save(origin as UIMaster);
                     }

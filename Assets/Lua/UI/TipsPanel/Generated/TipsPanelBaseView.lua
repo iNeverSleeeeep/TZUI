@@ -3,12 +3,12 @@ local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelBaseView = BaseClass(nil, "TipsPanelBaseView")
 local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
-function TipsPanelBaseView:Load(panel, parent, root)
+function TipsPanelBaseView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root
+    self.root = root or nil
     if self.root == nil then
         local prefab = CS.UnityEngine.Resources.Load("Output/TipsPanelBaseView")
         local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.xRectTransform)

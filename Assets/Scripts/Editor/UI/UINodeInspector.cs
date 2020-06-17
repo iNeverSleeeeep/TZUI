@@ -49,7 +49,7 @@ namespace TZUI
             so.ApplyModifiedProperties();
         }
 
-        protected static void AddViewParentToBinder(UINode node)
+        protected static void AddViewToBinder(UINode node)
         {
             var so = new SerializedObject(node);
             var objectsBinds = so.FindProperty("m_Binder").FindPropertyRelative("m_ObjectBinds");
@@ -68,6 +68,24 @@ namespace TZUI
                 {
                     objectsBinds.arraySize++;
                     objectsBinds.GetArrayElementAtIndex(objectsBinds.arraySize - 1).objectReferenceValue = view.transform.parent;
+                }
+
+                if (view.LoadMode == UIViewLoadMode.Always)
+                {
+                    alreadyAdded = false;
+                    for (var i = 0; i < objectsBinds.arraySize; ++i)
+                    {
+                        if (objectsBinds.GetArrayElementAtIndex(i).objectReferenceValue == view.transform)
+                        {
+                            alreadyAdded = true;
+                            break;
+                        }
+                    }
+                    if (alreadyAdded == false)
+                    {
+                        objectsBinds.arraySize++;
+                        objectsBinds.GetArrayElementAtIndex(objectsBinds.arraySize - 1).objectReferenceValue = view.transform;
+                    }
                 }
             }
             so.ApplyModifiedProperties();
