@@ -226,9 +226,9 @@ namespace TZUI
                         for (var j = 1; j < currentContents.Count - index; ++j)
                         {
                             var current = j + index;
-                            if (currentContents[i + j].StartsWith("end"))
+                            if (currentContents[current].StartsWith("end"))
                             {
-                                endIndex = i + j;
+                                endIndex = current;
                                 break;
                             }
                         }

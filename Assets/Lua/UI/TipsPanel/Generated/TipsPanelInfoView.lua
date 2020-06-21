@@ -22,6 +22,11 @@ function TipsPanelInfoView:Load(panel, root)
     self.root.sizeDelta = {x=681.7734, y=429.7552}
 
     UIHelper.InitUITable(self.root, self)
+
+    local events = self:OnGetEvents()
+    for i = 1, #events do 
+        GEventManager:ListenEvent(events[i][1], self, events[i][2])
+    end
 
 
 
@@ -34,6 +39,13 @@ end
 function TipsPanelInfoView:Release()
     self.et:ClearAllEvents()
 
+
+    local events = self:OnGetEvents()
+    if events then
+        for i = 1, #events do 
+            GEventManager:StopListenEvent(events[i][1], self) 
+        end
+    end
 
     if self.ownroot then
         if IsNull(self.root) == false then

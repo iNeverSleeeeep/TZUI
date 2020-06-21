@@ -645,6 +645,27 @@ namespace XLua
         }
 #endif
 
+        [MonoPInvokeCallback(typeof(LuaCSFunction))]
+        internal static int DoString(RealStatePtr L)
+        {
+            var str = LuaAPI.lua_tostring(L, 1);
+            var _L = L;
+            int oldTop = LuaAPI.lua_gettop(_L);
+            int errFunc = LuaAPI.load_error_func(_L, LuaAPI.get_error_func_ref(_L));
+            if (LuaAPI.luaL_loadbuffer(_L, str, LuaAPI.lua_tostring(L, 2)) != 0)
+            {
+                var err = LuaAPI.lua_tostring(L, -1);
+                UnityEngine.Debug.LogError(err);
+            }
+            else if (LuaAPI.lua_pcall(_L, 0, -1, errFunc) != 0)
+            {
+                var err = LuaAPI.lua_tostring(L, -1);
+                UnityEngine.Debug.LogError(err);
+            }
+            LuaAPI.lua_settop(L, oldTop);
+            return 0;
+        }
+
 #if !UNITY_SWITCH || UNITY_EDITOR
         [MonoPInvokeCallback(typeof(LuaCSFunction))]
         internal static int LoadSocketCore(RealStatePtr L)

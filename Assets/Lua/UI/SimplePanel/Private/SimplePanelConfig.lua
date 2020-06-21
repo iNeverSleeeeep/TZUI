@@ -12,6 +12,7 @@ SimplePanelConfig = {
 
 SimplePanelConfig.SimplePanelBaseView = {}
 
+
 -- 哦哦哦
 SimplePanelConfig.SimplePanelBaseView.CloseButton = {
     CloseDelay = 10, -- 延时关闭

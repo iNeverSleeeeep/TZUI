@@ -19,12 +19,31 @@ namespace XLua.CSObjectWrap
 	{
         
         
+        static void wrapInit0(LuaEnv luaenv, ObjectTranslator translator)
+        {
+        
+            translator.DelayWrapLoader(typeof(TZUI.UIBinder), TZUIUIBinderWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(CommandTerminal.Terminal), CommandTerminalTerminalWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(CommandTerminal.CommandShell), CommandTerminalCommandShellWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(CommandTerminal.CommandInfo), CommandTerminalCommandInfoWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(CommandTerminal.CommandArg), CommandTerminalCommandArgWrap.__Register);
         
         
         
+        }
         
         static void Init(LuaEnv luaenv, ObjectTranslator translator)
         {
+            
+            wrapInit0(luaenv, translator);
             
             
         }

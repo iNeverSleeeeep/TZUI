@@ -29,7 +29,7 @@ namespace XLua
 
         internal RealStatePtr rawL;
 
-        internal RealStatePtr L
+        public RealStatePtr L
         {
             get
             {
@@ -61,7 +61,7 @@ namespace XLua
 
         const int LIB_VERSION_EXPECT = 105;
 
-        public LuaEnv()
+        public LuaEnv(long L = 0)
         {
             if (LuaAPI.xlua_get_lib_version() != LIB_VERSION_EXPECT)
             {
@@ -77,8 +77,11 @@ namespace XLua
 #if GEN_CODE_MINIMIZE
                 LuaAPI.xlua_set_csharp_wrapper_caller(InternalGlobals.CSharpWrapperCallerPtr);
 #endif
-                // Create State
+            // Create State
+            if (L == 0)
                 rawL = LuaAPI.luaL_newstate();
+            else
+                rawL = (RealStatePtr)L;
 
                 //Init Base Libs
                 LuaAPI.luaopen_xlua(rawL);
@@ -103,6 +106,12 @@ namespace XLua
                     throw new Exception("call xlua_setglobal fail!");
                 }
 #endif
+
+            LuaAPI.lua_pushstdcallcfunction(rawL, StaticLuaCallbacks.DoString);
+            if (0 != LuaAPI.xlua_setglobal(rawL, "dostring"))
+            {
+                throw new Exception("call xlua_setglobal fail!");
+            }
 
             //template engine lib register
             TemplateEngine.LuaTemplate.OpenLib(rawL);

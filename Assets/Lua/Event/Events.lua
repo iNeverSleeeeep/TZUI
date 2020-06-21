@@ -5,7 +5,7 @@ local function GenName()
 end
 
 local Events = {
-    PlayerAttribute = {
+    LocalRoleAttribute = {
         HP = GenName()
     }
 }

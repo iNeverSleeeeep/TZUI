@@ -2,4 +2,13 @@
 
 <linker>
 
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="TZUI.UIBinder" preserve="all"/>
+		<type fullname="CommandTerminal.Terminal" preserve="all"/>
+		<type fullname="CommandTerminal.CommandShell" preserve="all"/>
+		<type fullname="CommandTerminal.CommandInfo" preserve="all"/>
+		<type fullname="CommandTerminal.CommandArg" preserve="all"/>
+		
+	</assembly>
+
 </linker>

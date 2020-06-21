@@ -6,5 +6,8 @@ rawset(_G, "LogE", LogE or require("Common.Log").LogE)
 rawset(_G, "UIRoot", CS.UnityEngine.GameObject.Find("UIRoot"))
 
 rawset(_G, "BaseClass", BaseClass or require("Common.BaseClass").BaseClass)
+rawset(_G, "EEvent", require("Event.Events"))
 rawset(_G, "GEventManager", GEventManager or require("Event.EventManager").New())
+rawset(_G, "GDataManager", GDataManager or require("Data.DataManager").New())
 rawset(_G, "GUIManager", GUIManager or require("UI.UIManager").New())
+rawset(_G, "GCommandManager", GCommandManager or require("Debug.CommandManager").New())

@@ -24,6 +24,11 @@ function SimplePanelBaseView:Load(panel, root)
 
     UIHelper.InitUITable(self.root, self)
 
+    local events = self:OnGetEvents()
+    for i = 1, #events do 
+        GEventManager:ListenEvent(events[i][1], self, events[i][2])
+    end
+
     self.et:ListenEvent("OnButtonClick", Bind(self.OnButtonClick, self))
     self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
     self.et:ListenEvent("OnButtonClick3", Bind(self.OnButtonClick3, self))
@@ -47,6 +52,13 @@ function SimplePanelBaseView:Release()
     self.CloseButton2 = nil
     self.CloseButton3:UnBind()
     self.CloseButton3 = nil
+
+    local events = self:OnGetEvents()
+    if events then
+        for i = 1, #events do 
+            GEventManager:StopListenEvent(events[i][1], self) 
+        end
+    end
 
     if self.ownroot then
         if IsNull(self.root) == false then

@@ -28,17 +28,17 @@ public class Lua : MonoBehaviour
 
     private void OnEnable()
     {
-        m_LuaStart.Invoke();
+        m_LuaStart?.Invoke();
     }
 
     private void OnDisable()
     {
-        m_LuaDestroy.Invoke();
+        m_LuaDestroy?.Invoke();
     }
 
     private void Update()
     {
-        m_LuaUpdate();
+        m_LuaUpdate?.Invoke();
     }
 
     private void OnDestroy()
