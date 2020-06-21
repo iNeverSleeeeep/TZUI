@@ -10,7 +10,13 @@ TipsPanelConfig = {
     },
 }
 
-TipsPanelConfig.TipsPanelBaseView = {}
+TipsPanelConfig.TipsPanelBaseView = {
+    RefreshEvents = {
+        {},
+        {},
+    }
+}
+
 TipsPanelConfig.TipsPanelInfoView = {}
 TipsPanelConfig.TipsPanelStaticView = {}
 

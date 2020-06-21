@@ -1,7 +1,11 @@
-function LogD(...)
+local Log = {}
+
+function Log.LogD(...)
     CS.UnityEngine.Debug.Log(...)
 end
 
-function LogE(...)
+function Log.LogE(...)
     CS.UnityEngine.Debug.LogError(...)
 end
+
+return Log

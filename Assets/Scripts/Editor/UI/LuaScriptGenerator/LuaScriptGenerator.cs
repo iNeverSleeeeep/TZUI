@@ -84,9 +84,9 @@ namespace TZUI
 
             }
 
-            outputContents.Insert(outputContents.Count - 1, string.Format("{0}Config.{0}{1} = {{}}", master.name, "BaseView"));
+            outputContents.Insert(outputContents.Count - 1, string.Format("{0}Config.{0}{1} = {{}}\n", master.name, "BaseView"));
             foreach (var view in master.GetComponentsInChildren<UIView>(true))
-                outputContents.Insert(outputContents.Count - 1, string.Format("{0}Config.{0}{1} = {{}}", master.name, view.name));
+                outputContents.Insert(outputContents.Count - 1, string.Format("{0}Config.{0}{1} = {{}}\n", master.name, view.name));
 
             outputContents.Insert(outputContents.Count - 1, "");
             GenerateWidgets(master, outputContents, currentContents);

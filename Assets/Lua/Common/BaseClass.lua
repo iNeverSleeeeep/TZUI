@@ -1,8 +1,9 @@
 
 --保存类类型的虚表
 --local _class = {}
+local Class = {}
 
-function BaseClass(super, name)
+function Class.BaseClass(super, name)
 	-- 生成一个类类型
 	local class_type = {__index = super}
 	-- 在创建对象的时候自动调用
@@ -63,3 +64,5 @@ function BaseClass(super, name)
 
 	return class_type
 end
+
+return Class

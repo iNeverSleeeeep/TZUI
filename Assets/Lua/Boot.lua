@@ -1,19 +1,20 @@
-require("Common.Log")
-require("Common.BaseClass")
-UIRoot = CS.UnityEngine.GameObject.Find("UIRoot")
-GUIManager = require("UI.UIManager").New()
+require("Global")
 
 local ctrl = require("UI.SimplePanel.SimplePanelCtrl").New()
 local hello = ctrl.Hello
 
-function Start()
+local GameLogic = {}
+
+function GameLogic.Start()
     GUIManager:Open("SimplePanel")
 end
 
-function Update()
+function GameLogic.Update()
     hello(ctrl)
 end
 
-function Destroy()
+function GameLogic.Destroy()
     GUIManager:Release()
 end
+
+return GameLogic

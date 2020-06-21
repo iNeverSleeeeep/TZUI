@@ -20,10 +20,10 @@ public class Lua : MonoBehaviour
         var hotLoader = GetComponent<LuaHotLoader>();
         if (hotLoader != null)
             hotLoader.Init();
-        LuaEnv.DoString("require('Boot')");
-        m_LuaStart = LuaEnv.Global.Get<Action>("Start");
-        m_LuaUpdate = LuaEnv.Global.Get<Action>("Update");
-        m_LuaDestroy = LuaEnv.Global.Get<Action>("Destroy");
+        LuaTable gameLogic = LuaEnv.DoString("return require('Boot')")[0] as LuaTable;
+        m_LuaStart = gameLogic.Get<Action>("Start");
+        m_LuaUpdate = gameLogic.Get<Action>("Update");
+        m_LuaDestroy = gameLogic.Get<Action>("Destroy");
     }
 
     private void OnEnable()
