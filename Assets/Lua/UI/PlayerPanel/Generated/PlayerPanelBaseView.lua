@@ -1,25 +1,25 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
-local TipsPanelStaticView = BaseClass(nil, "TipsPanelStaticView")
+local PlayerPanelBaseView = BaseClass(nil, "PlayerPanelBaseView")
 
-function TipsPanelStaticView:Load(panel, root)
+function PlayerPanelBaseView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
     self.db = panel.db
 
-    self.root = root or panel.ot.StaticViewRectTransform
+    self.root = root or nil
     if self.root == nil then
-        local prefab = CS.UnityEngine.Resources.Load("Output/TipsPanelStaticView")
-        local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.TipsPanelRectTransform)
+        local prefab = CS.UnityEngine.Resources.Load("Output/PlayerPanelBaseView")
+        local go = CS.UnityEngine.GameObject.Instantiate(prefab, panel.ot.xRectTransform)
         go.name = prefab.name
         self.root = go.transform
     end
     self.ownroot = self.root ~= root
-    self.root.localScale = {x=1, y=1, z=1}
-    self.root.anchorMin = {x=0.5, y=0.5}
-    self.root.anchorMax = {x=0.5, y=0.5}
-    self.root.anchoredPosition = {x=0, y=0}
-    self.root.sizeDelta = {x=100, y=100}
+    self.root.localScale = {x=1,y=1,z=1}
+    self.root.anchorMin = {x=0,y=0}
+    self.root.anchorMax = {x=1,y=1}
+    self.root.anchoredPosition = {x=0,y=0}
+    self.root.sizeDelta = {x=0,y=0}
 
     UIHelper.InitUITable(self.root, self)
 
@@ -32,13 +32,13 @@ function TipsPanelStaticView:Load(panel, root)
 
 
 
-    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! TipsPanelStaticView") end
+    self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! PlayerPanelBaseView") end
 
     self:RefreshAll()
     return self
 end
 
-function TipsPanelStaticView:Release()
+function PlayerPanelBaseView:Release()
     self.et:ClearAllEvents()
 
 
@@ -57,12 +57,12 @@ function TipsPanelStaticView:Release()
     self.root = nil
 end
 
-function TipsPanelStaticView:Show()
+function PlayerPanelBaseView:Show()
 
 end
 
-function TipsPanelStaticView:Hide()
+function PlayerPanelBaseView:Hide()
 
 end
 
-return TipsPanelStaticView
+return PlayerPanelBaseView

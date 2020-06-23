@@ -24,9 +24,11 @@ function TipsPanelBaseView:Load(panel, root)
 
     UIHelper.InitUITable(self.root, self)
 
-    local events = self:OnGetEvents()
-    for i = 1, #events do 
-        GEventManager:ListenEvent(events[i][1], self, events[i][2])
+    local events = self:RegisterRefreshEvents()
+    if events then
+        for i = 1, #events do 
+            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+        end
     end
 
     self.et:ListenEvent("OnTipsClose", Bind(self.OnTipsClose, self))
@@ -46,7 +48,7 @@ function TipsPanelBaseView:Release()
     self.CloseButtonWidget:UnBind()
     self.CloseButtonWidget = nil
 
-    local events = self:OnGetEvents()
+    local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
             GEventManager:StopListenEvent(events[i][1], self) 

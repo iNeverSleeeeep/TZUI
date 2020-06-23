@@ -23,9 +23,11 @@ function TipsPanelInfoView:Load(panel, root)
 
     UIHelper.InitUITable(self.root, self)
 
-    local events = self:OnGetEvents()
-    for i = 1, #events do 
-        GEventManager:ListenEvent(events[i][1], self, events[i][2])
+    local events = self:RegisterRefreshEvents()
+    if events then
+        for i = 1, #events do 
+            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+        end
     end
 
 
@@ -40,7 +42,7 @@ function TipsPanelInfoView:Release()
     self.et:ClearAllEvents()
 
 
-    local events = self:OnGetEvents()
+    local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
             GEventManager:StopListenEvent(events[i][1], self) 

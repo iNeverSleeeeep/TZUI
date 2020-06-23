@@ -1,7 +1,7 @@
 local SimplePanelBaseView = BaseClass(require("UI.SimplePanel.Generated.SimplePanelBaseView"))
 
 -- 事件响应注册，返回数组{{event1, func1}, {event2, func2}}
-function SimplePanelBaseView:OnGetEvents()
+function SimplePanelBaseView:RegisterRefreshEvents()
     return {
         { EEvent.LocalRoleAttribute.HP, self.RefreshHPValue }
     }
@@ -13,7 +13,7 @@ function SimplePanelBaseView:RefreshAll()
 end
 
 function SimplePanelBaseView:OnButtonClick()
-    GUIManager:Open("TipsPanel")
+    GUIManager:Open("PlayerPanel")
 end
 
 function SimplePanelBaseView:OnButtonClick2()

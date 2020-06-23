@@ -13,7 +13,7 @@ public class Lua : MonoBehaviour
     private Action m_LuaUpdate;
     private Action m_LuaDestroy;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         LuaEnv = new LuaEnv();
         LuaEnv.AddLoader(CustomLoader);
@@ -24,6 +24,8 @@ public class Lua : MonoBehaviour
         m_LuaStart = gameLogic.Get<Action>("Start");
         m_LuaUpdate = gameLogic.Get<Action>("Update");
         m_LuaDestroy = gameLogic.Get<Action>("Destroy");
+
+        m_LuaStart?.Invoke();
     }
 
     private void OnEnable()

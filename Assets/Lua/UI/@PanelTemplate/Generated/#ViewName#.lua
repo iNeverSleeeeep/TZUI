@@ -24,9 +24,11 @@ function #ViewName#:Load(panel, root)
 
     UIHelper.InitUITable(self.root, self)
 
-    local events = self:OnGetEvents()
-    for i = 1, #events do 
-        GEventManager:ListenEvent(events[i][1], self, events[i][2])
+    local events = self:RegisterRefreshEvents()
+    if events then
+        for i = 1, #events do 
+            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+        end
     end
 
     @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
@@ -45,7 +47,7 @@ function #ViewName#:Release()
     @foreach Widget@ self.#WidgetName#:UnBind()
     self.#WidgetName# = nil @end@
 
-    local events = self:OnGetEvents()
+    local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
             GEventManager:StopListenEvent(events[i][1], self) 
