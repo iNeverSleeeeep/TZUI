@@ -1,13 +1,34 @@
 -- 所有的全局变量必须在Global里面声明
-setmetatable(_G, {__newindex=function(t,k,v) LogE("Global New Index Forbidden! Key:" .. tostring(k) .. " Value:" .. tostring(v)) end})
+local __G = {}
+local lock = false
+local tostring = tostring
+local rawget = rawget
+local xpcall = xpcall
+local require = require
 
-rawset(_G, "LogD", LogD or require("Common.Log").LogD)
-rawset(_G, "LogE", LogE or require("Common.Log").LogE)
-rawset(_G, "UIRoot", CS.UnityEngine.GameObject.Find("UIRoot"))
+function LockG() lock = true end
+function UnlockG() lock = false end
+function NOGCall(func) lock = true xpcall(func, __G.LogE) lock = false end
 
-rawset(_G, "BaseClass", BaseClass or require("Common.BaseClass").BaseClass)
-rawset(_G, "EEvent", require("Event.Events"))
-rawset(_G, "GEventManager", GEventManager or require("Event.EventManager").New())
-rawset(_G, "GDataManager", GDataManager or require("Data.DataManager").New())
-rawset(_G, "GUIManager", GUIManager or require("UI.UIManager").New())
-rawset(_G, "GCommandManager", GCommandManager or require("Debug.CommandManager").New())
+setmetatable(_G, {
+    __newindex = function(t,k,v) 
+        __G.LogE("Global New Index Forbidden! Key:" .. tostring(k) .. " Value:" .. tostring(v)) 
+    end,
+    __index = function(t, k)
+        if lock then
+            return nil
+        end
+        return rawget(__G, k)
+    end
+})
+
+
+__G["LogD"] = require("Common.Log").LogD
+__G["LogE"] = require("Common.Log").LogE
+__G["UIRoot"] = CS.UnityEngine.GameObject.Find("UIRoot")
+__G["BaseClass"] = require("Common.BaseClass").BaseClass
+__G["EEvent"] = require("Event.Events")
+__G["GEventManager"] = require("Event.EventManager").New()
+__G["GDataManager"] = require("Data.DataManager").New()
+__G["GUIManager"] = require("UI.UIManager").New()
+__G["GCommandManager"] = require("Debug.CommandManager").New()
