@@ -10,6 +10,7 @@ function GameLogic.Start()
 end
 
 function GameLogic.Update()
+    GDataManager.Mutable.LocalPlayer.hp = GDataManager.LocalPlayer.hp + 1
     hello(ctrl)
 end
 

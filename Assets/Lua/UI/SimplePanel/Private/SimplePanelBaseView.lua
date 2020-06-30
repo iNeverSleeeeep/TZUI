@@ -9,7 +9,7 @@ end
 
 -- 刷新全部显示
 function SimplePanelBaseView:RefreshAll()
-    self.vt.bbb:SetString(self.panel.config.TestOne + 1)
+    self.vt.bbb:SetString(self.db.player.hp)
 end
 
 function SimplePanelBaseView:OnButtonClick()
@@ -30,7 +30,7 @@ function SimplePanelBaseView:Test()
 end
 
 function SimplePanelBaseView:RefreshHPValue()
-    self.vt.bbb:SetString(self.db.role.hp)
+    self.vt.bbb:SetString(self.db.player.hp)
 end
 
 return SimplePanelBaseView
