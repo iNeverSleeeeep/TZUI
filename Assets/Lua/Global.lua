@@ -23,12 +23,12 @@ setmetatable(_G, {
 })
 
 
-__G["LogD"] = require("Common.Log").LogD
-__G["LogE"] = require("Common.Log").LogE
-__G["UIRoot"] = CS.UnityEngine.GameObject.Find("UIRoot")
-__G["BaseClass"] = require("Common.BaseClass").BaseClass
-__G["EEvent"] = require("Event.Events")
-__G["GEventManager"] = require("Event.EventManager").New()
-__G["GDataManager"] = require("Data.DataManager").New()
-__G["GUIManager"] = require("UI.UIManager").New()
-__G["GCommandManager"] = require("Debug.CommandManager").New()
+__G.LogD = require("Common.Log").LogD
+__G.LogE = require("Common.Log").LogE
+__G.UIRoot = CS.UnityEngine.GameObject.Find("UIRoot")
+__G.BaseClass = require("Common.BaseClass").BaseClass
+__G.EEvent = require("Event.Events")
+__G.GEventManager = require("Event.EventManager").New()
+__G.GDataManager = require("Data.DataManager").New()
+__G.GUIManager = require("UI.UIManager").New()
+__G.GCommandManager = require("Debug.CommandManager").New()
