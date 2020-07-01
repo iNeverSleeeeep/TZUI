@@ -3,6 +3,8 @@ local Bind = require('Common.HelperFunctions').Bind
 local #ViewName# = BaseClass(nil, "#ViewName#")
 @foreach WidgetType@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
 
+local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+
 function #ViewName#:Load(panel, root)
     self.panel = panel
     self.views = panel.views
@@ -27,17 +29,17 @@ function #ViewName#:Load(panel, root)
     local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
-            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+            GEventManager:ListenEvent(events[i][1], self, function(s) LimitGCall(function() events[i][2](s) end, _gWhiteList) end)
         end
     end
 
-    @foreach EventName@ self.et:ListenEvent("#EventName#", Bind(self.#EventName#, self)) @end@
+    @foreach EventName@ self.et:ListenEvent("#EventName#", function() LimitGCall(Bind(self.#EventName#, self), _gWhiteList) end) @end@
 
     @foreach Widget@ self.#WidgetName# = #WidgetType#.New():Bind(self.ot.#WidgetName##WidgetType#, self, panel.config.#ViewName#.#WidgetName#)  @end@
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! #ViewName#") end
 
-    self:RefreshAll()
+    LimitGCall(Bind(self.RefreshAll, self))
     return self
 end
 

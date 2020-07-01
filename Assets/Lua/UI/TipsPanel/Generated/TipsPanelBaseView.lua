@@ -3,6 +3,8 @@ local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelBaseView = BaseClass(nil, "TipsPanelBaseView")
 local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
+local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+
 function TipsPanelBaseView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
@@ -27,18 +29,18 @@ function TipsPanelBaseView:Load(panel, root)
     local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
-            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+            GEventManager:ListenEvent(events[i][1], self, function(s) LimitGCall(function() events[i][2](s) end, _gWhiteList) end)
         end
     end
 
-    self.et:ListenEvent("OnTipsClose", Bind(self.OnTipsClose, self))
-    self.et:ListenEvent("OnLoadInfoViewClick", Bind(self.OnLoadInfoViewClick, self))
+    self.et:ListenEvent("OnTipsClose", function() LimitGCall(Bind(self.OnTipsClose, self), _gWhiteList) end)
+    self.et:ListenEvent("OnLoadInfoViewClick", function() LimitGCall(Bind(self.OnLoadInfoViewClick, self), _gWhiteList) end)
 
     self.CloseButtonWidget = CloseButtonWidget.New():Bind(self.ot.CloseButtonWidgetCloseButtonWidget, self, panel.config.TipsPanelBaseView.CloseButtonWidget) 
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! TipsPanelBaseView") end
 
-    self:RefreshAll()
+    LimitGCall(Bind(self.RefreshAll, self))
     return self
 end
 

@@ -3,9 +3,10 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local SimplePanel = BaseClass(nil, "SimplePanel")
 local _panel
 local _required, _views = {}, {}
+local _gWhiteList = {BaseClass=true,UIHelper=true}
 
 local function _require(moduleName)
-    _required[moduleName] = require(moduleName)
+    _required[moduleName] = LimitGCall(function() return require(moduleName) end, _gWhiteList)
     return _required[moduleName]
 end
 

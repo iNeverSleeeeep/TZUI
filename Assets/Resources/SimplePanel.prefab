@@ -25,6 +25,19 @@ GameObject:
   - component: {fileID: 7785707197739411068}
   - component: {fileID: 6705689103922798123}
   - component: {fileID: 5464422415084727467}
+  - component: {fileID: 3941974835843310950}
+  - component: {fileID: 3792375671913417041}
+  - component: {fileID: 69881064362117916}
+  - component: {fileID: 2500727230225833105}
+  - component: {fileID: 6211279866612809864}
+  - component: {fileID: 3939958007304472281}
+  - component: {fileID: 7627456706507523936}
+  - component: {fileID: 2140089726301303750}
+  - component: {fileID: 815713257394363863}
+  - component: {fileID: 8700685092118832926}
+  - component: {fileID: 9018817315323007238}
+  - component: {fileID: 2265269416716123950}
+  - component: {fileID: 1541885979181868772}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
@@ -304,6 +317,188 @@ MonoBehaviour:
   m_EventTable: {fileID: 15088505}
   m_EventName: OnCloseClick
 --- !u!114 &5464422415084727467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &3941974835843310950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &3792375671913417041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &69881064362117916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &2500727230225833105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &6211279866612809864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &3939958007304472281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &7627456706507523936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &2140089726301303750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &815713257394363863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &8700685092118832926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &9018817315323007238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &2265269416716123950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15088500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventTable: {fileID: 15088505}
+  m_EventName: OnCloseClick
+--- !u!114 &1541885979181868772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

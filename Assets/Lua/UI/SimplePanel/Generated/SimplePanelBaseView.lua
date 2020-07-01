@@ -3,6 +3,8 @@ local Bind = require('Common.HelperFunctions').Bind
 local SimplePanelBaseView = BaseClass(nil, "SimplePanelBaseView")
 local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
+local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+
 function SimplePanelBaseView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
@@ -27,13 +29,13 @@ function SimplePanelBaseView:Load(panel, root)
     local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
-            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+            GEventManager:ListenEvent(events[i][1], self, function(s) LimitGCall(function() events[i][2](s) end, _gWhiteList) end)
         end
     end
 
-    self.et:ListenEvent("OnButtonClick", Bind(self.OnButtonClick, self))
-    self.et:ListenEvent("OnButtonClick2", Bind(self.OnButtonClick2, self))
-    self.et:ListenEvent("OnButtonClick3", Bind(self.OnButtonClick3, self))
+    self.et:ListenEvent("OnButtonClick", function() LimitGCall(Bind(self.OnButtonClick, self), _gWhiteList) end)
+    self.et:ListenEvent("OnButtonClick2", function() LimitGCall(Bind(self.OnButtonClick2, self), _gWhiteList) end)
+    self.et:ListenEvent("OnButtonClick3", function() LimitGCall(Bind(self.OnButtonClick3, self), _gWhiteList) end)
 
     self.CloseButton = CloseButtonWidget.New():Bind(self.ot.CloseButtonCloseButtonWidget, self, panel.config.SimplePanelBaseView.CloseButton) 
     self.CloseButton2 = CloseButtonWidget.New():Bind(self.ot.CloseButton2CloseButtonWidget, self, panel.config.SimplePanelBaseView.CloseButton2) 
@@ -41,7 +43,7 @@ function SimplePanelBaseView:Load(panel, root)
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! SimplePanelBaseView") end
 
-    self:RefreshAll()
+    LimitGCall(Bind(self.RefreshAll, self))
     return self
 end
 

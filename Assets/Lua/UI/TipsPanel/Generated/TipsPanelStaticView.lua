@@ -2,6 +2,8 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelStaticView = BaseClass(nil, "TipsPanelStaticView")
 
+local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+
 function TipsPanelStaticView:Load(panel, root)
     self.panel = panel
     self.views = panel.views
@@ -26,7 +28,7 @@ function TipsPanelStaticView:Load(panel, root)
     local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
-            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+            GEventManager:ListenEvent(events[i][1], self, function(s) LimitGCall(function() events[i][2](s) end, _gWhiteList) end)
         end
     end
 
@@ -34,7 +36,7 @@ function TipsPanelStaticView:Load(panel, root)
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! TipsPanelStaticView") end
 
-    self:RefreshAll()
+    LimitGCall(Bind(self.RefreshAll, self))
     return self
 end
 
