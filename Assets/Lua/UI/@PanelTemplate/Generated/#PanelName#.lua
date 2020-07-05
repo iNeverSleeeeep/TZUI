@@ -6,7 +6,16 @@ local _required, _views = {}, {}
 local _gWhiteList = {BaseClass=true,UIHelper=true}
 
 local function _require(moduleName)
-    _required[moduleName] = LimitGCall(function() return require(moduleName) end, _gWhiteList)
+    PushGWhiteList(_gWhiteList)
+    local ret, module = pcall(require, moduleName)
+    if not ret then
+        PushGWhiteList({LogE=true})
+        LogE(module)
+        PopGWhiteList()
+    else
+        _required[moduleName] = module
+    end
+    PopGWhiteList()
     return _required[moduleName]
 end
 

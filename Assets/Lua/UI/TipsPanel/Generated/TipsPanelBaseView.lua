@@ -3,7 +3,7 @@ local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelBaseView = BaseClass(nil, "TipsPanelBaseView")
 local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
 
-local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+local _gWhiteList = {GUIManager=true,LogD=true,LogE=true,LogW=true}
 
 function TipsPanelBaseView:Load(panel, root)
     self.panel = panel

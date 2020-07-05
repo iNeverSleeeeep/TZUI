@@ -3,7 +3,7 @@ local Bind = require('Common.HelperFunctions').Bind
 local #ViewName# = BaseClass(nil, "#ViewName#")
 @foreach WidgetType@ local #WidgetType# = require("UI.UIWidgets.#WidgetType#") @end@
 
-local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+local _gWhiteList = {GUIManager=true,LogD=true,LogE=true,LogW=true}
 
 function #ViewName#:Load(panel, root)
     self.panel = panel

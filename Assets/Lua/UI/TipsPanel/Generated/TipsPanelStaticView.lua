@@ -2,7 +2,7 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
 local TipsPanelStaticView = BaseClass(nil, "TipsPanelStaticView")
 
-local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
+local _gWhiteList = {GUIManager=true,LogD=true,LogE=true,LogW=true}
 
 function TipsPanelStaticView:Load(panel, root)
     self.panel = panel

@@ -1,29 +1,21 @@
 -- 所有的全局变量必须在Global里面声明
 local __G = {}
-local lock = false
+local lock, pauselock = false, false
 local tostring = tostring
 local rawget = rawget
 local xpcall = xpcall
 local require = require
-local whitelist = nil
+local whitelist = {}
 
-function LockG() lock = true end
-function UnlockG() lock = false end
-function NOGCall(func) 
-    lock = true 
-    whitelist = nil 
-    local ret, err = pcall(func)
-    if err then __G.LogE(err) end
-    lock = false 
-    return ret
-end
-
-function LimitGCall(func, wl) 
-    whitelist = wl
+function PushGWhiteList(wl) whitelist[#whitelist+1] = wl end
+function PopGWhiteList(wl) whitelist[#whitelist] = nil end
+function LimitGCall(func, wl)
+    PushGWhiteList(wl or {})
     lock = true
     local status, ret = pcall(func)
     if not status then __G.LogE(ret) end
     lock = false
+    PopGWhiteList()
     return ret
 end
 
@@ -33,7 +25,8 @@ setmetatable(_G, {
     end,
     __index = function(t, k)
         if lock then
-            if whitelist and whitelist[k] then
+            local wl = whitelist[#whitelist]
+            if wl[k] then
                 return rawget(__G, k)
             end
             __G.LogE("Dont Call Global: " .. k)

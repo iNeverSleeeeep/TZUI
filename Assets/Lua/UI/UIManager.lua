@@ -1,4 +1,5 @@
 local UIManager = BaseClass(nil, "UIManager")
+local _gWhiteList = {GUIManager=true,BaseClass=true,UIRoot=true,GDataManager=true,LogD=true,LogE=true,LogW=true}
 
 function UIManager:__init()
     self.stack = {}
@@ -9,10 +10,14 @@ function UIManager:Open(id)
     if self.dic[id] then
         return
     end
-    local panel = require("UI."..id..".Generated."..id).New():Load()
-    self.stack[#self.stack+1] = panel
-    LogD("UI Open "..id)
-    self.dic[id] = panel
+    PushGWhiteList(_gWhiteList)
+    xpcall(function()
+        local panel = require("UI."..id..".Generated."..id).New():Load()
+        self.stack[#self.stack+1] = panel
+        LogD("UI Open "..id)
+        self.dic[id] = panel
+    end, LogE)
+    PopGWhiteList()
 end
 
 function UIManager:Close(id)
