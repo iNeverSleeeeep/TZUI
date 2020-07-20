@@ -3,9 +3,19 @@ local UIHelper = require("UI.UICommon.UIHelper")
 local PlayerPanel = BaseClass(nil, "PlayerPanel")
 local _panel
 local _required, _views = {}, {}
+local _gWhiteList = {BaseClass=true,UIHelper=true}
 
 local function _require(moduleName)
-    _required[moduleName] = require(moduleName)
+    PushGWhiteList(_gWhiteList)
+    local ret, module = pcall(require, moduleName)
+    if not ret then
+        PushGWhiteList({LogE=true})
+        LogE(module)
+        PopGWhiteList()
+    else
+        _required[moduleName] = module
+    end
+    PopGWhiteList()
     return _required[moduleName]
 end
 

@@ -1,6 +1,9 @@
 local UIHelper = require("UI.UICommon.UIHelper")
 local Bind = require('Common.HelperFunctions').Bind
-local PlayerPanelBaseView = BaseClass(nil, "PlayerPanelBaseView")
+local PlayerPanelBaseView = BaseClass(nil, "PlayerPanelBaseView")
+local CloseButtonWidget = require("UI.UIWidgets.CloseButtonWidget")
+
+local _gWhiteList = {GUIManager=true,LogD=true,LogE=true,LogW=true}
 
 function PlayerPanelBaseView:Load(panel, root)
     self.panel = panel
@@ -26,21 +29,24 @@ function PlayerPanelBaseView:Load(panel, root)
     local events = self:RegisterRefreshEvents()
     if events then
         for i = 1, #events do 
-            GEventManager:ListenEvent(events[i][1], self, events[i][2])
+            GEventManager:ListenEvent(events[i][1], self, function(s) LimitGCall(function() events[i][2](s) end, _gWhiteList) end)
         end
     end
 
-
+
+    self.CloseButtonWidget = CloseButtonWidget.New():Bind(self.ot.CloseButtonWidgetCloseButtonWidget, self, panel.config.PlayerPanelBaseView.CloseButtonWidget) 
 
     self.__newindex = function() LogE("This Class Is Logic Only, Dont New Index! PlayerPanelBaseView") end
 
-    self:RefreshAll()
+    LimitGCall(Bind(self.RefreshAll, self))
     return self
 end
 
 function PlayerPanelBaseView:Release()
     self.et:ClearAllEvents()
-
+
+    self.CloseButtonWidget:UnBind()
+    self.CloseButtonWidget = nil
 
     local events = self:RegisterRefreshEvents()
     if events then

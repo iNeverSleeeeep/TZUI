@@ -30,6 +30,7 @@ namespace TZUI
             if (GUILayout.Button("发布"))
             {
                 AssetDatabase.StartAssetEditing();
+
                 try
                 {
                     foreach (var origin in targets)
@@ -59,7 +60,11 @@ namespace TZUI
                 master.gameObject.name = origin.name;
                 SplitDelayLoadViews(master);
                 PrefabUtility.SaveAsPrefabAsset(master.gameObject, "Assets/Resources/Output/" + master.name + ".prefab");
-                PrefabUtility.SaveAsPrefabAsset((origin as UIMaster).gameObject, "Assets/Resources/" + master.name + ".prefab");
+                var go = (origin as UINode).gameObject;
+                if (PrefabUtility.IsPartOfAnyPrefab(go))
+                    PrefabUtility.ApplyPrefabInstance(go, InteractionMode.AutomatedAction);
+                else
+                    PrefabUtility.SaveAsPrefabAssetAndConnect(go, "Assets/Resources/" + go.name + ".prefab", InteractionMode.AutomatedAction);
                 GameObject.DestroyImmediate(master.gameObject);
             }
             finally
