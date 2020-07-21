@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 85313615829732189}
   - component: {fileID: 85313615829732186}
   - component: {fileID: 85313615829732187}
-  - component: {fileID: 1919688353302324431}
   - component: {fileID: 85313616758457548}
+  - component: {fileID: 3511633502438695431}
   m_Layer: 5
   m_Name: CloseButtonWidget
   m_TagString: Untagged
@@ -121,23 +121,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1919688353302324431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85313615829732185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e554d3b0a559d4493a228526673661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Binder:
-    m_ObjectBinds: []
-    m_Events:
-    - OnCloseClick
-    m_VariableBinds: []
 --- !u!114 &85313616758457548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +133,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventTable: {fileID: 1919688353302324431}
+  m_EventTable: {fileID: 3511633502438695431}
   m_EventName: OnCloseClick
+--- !u!114 &3511633502438695431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85313615829732185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bc6b4745d6cbc47a6c5697ba4c87cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Binder:
+    m_ObjectBinds: []
+    m_Events:
+    - OnCloseClick
+    m_VariableBinds: []
+  m_WidgetIndex: 0
 --- !u!1 &3624484064295301150
 GameObject:
   m_ObjectHideFlags: 0

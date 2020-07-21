@@ -9,10 +9,12 @@ namespace TZUI
     [CustomEditor(typeof(UIWidget))]
     public class UIWidgetInspector : UINodeInspector
     {
+        SerializedProperty m_Binder;
 
         protected new void OnEnable()
         {
             base.OnEnable();
+            m_Binder = serializedObject.FindProperty("m_Binder");
         }
 
         public override void OnInspectorGUI()

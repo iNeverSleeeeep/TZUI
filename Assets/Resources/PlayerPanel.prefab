@@ -115,7 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Binder:
     m_ObjectBinds:
-    - {fileID: 3768634864240117953}
+    - {fileID: 0}
+    - {fileID: 2185141936000421385}
     m_Events: []
     m_VariableBinds: []
 --- !u!1 &1948096150141718780
@@ -257,22 +258,22 @@ PrefabInstance:
     - target: {fileID: 85313615829732184, guid: 85ca8b78ba7197f4caba01628d94e356,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 586.13
       objectReference: {fileID: 0}
     - target: {fileID: 85313615829732184, guid: 85ca8b78ba7197f4caba01628d94e356,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 217.19
       objectReference: {fileID: 0}
     - target: {fileID: 85313615829732184, guid: 85ca8b78ba7197f4caba01628d94e356,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 58.741776
       objectReference: {fileID: 0}
     - target: {fileID: 85313615829732184, guid: 85ca8b78ba7197f4caba01628d94e356,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 52.62155
       objectReference: {fileID: 0}
     - target: {fileID: 85313615829732184, guid: 85ca8b78ba7197f4caba01628d94e356,
         type: 3}
@@ -324,6 +325,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: CloseButtonWidget
       objectReference: {fileID: 0}
+    - target: {fileID: 3511633502438695431, guid: 85ca8b78ba7197f4caba01628d94e356,
+        type: 3}
+      propertyPath: m_WidgetIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724964089761627005, guid: 85ca8b78ba7197f4caba01628d94e356,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724964089761627005, guid: 85ca8b78ba7197f4caba01628d94e356,
+        type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724964089761627005, guid: 85ca8b78ba7197f4caba01628d94e356,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724964089761627005, guid: 85ca8b78ba7197f4caba01628d94e356,
+        type: 3}
+      propertyPath: m_Text
+      value: X
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85ca8b78ba7197f4caba01628d94e356, type: 3}
 --- !u!224 &3442970423873791830 stripped
@@ -332,15 +358,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3380227582739180558}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3768634864240117953 stripped
+--- !u!114 &2185141936000421385 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1919688353302324431, guid: 85ca8b78ba7197f4caba01628d94e356,
+  m_CorrespondingSourceObject: {fileID: 3511633502438695431, guid: 85ca8b78ba7197f4caba01628d94e356,
     type: 3}
   m_PrefabInstance: {fileID: 3380227582739180558}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e554d3b0a559d4493a228526673661, type: 3}
+  m_Script: {fileID: 11500000, guid: d0bc6b4745d6cbc47a6c5697ba4c87cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

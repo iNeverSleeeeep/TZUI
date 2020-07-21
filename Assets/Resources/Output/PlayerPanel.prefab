@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2638460787480927593}
   - component: {fileID: 789271183693583981}
   - component: {fileID: 9099074363975225112}
-  - component: {fileID: 8911052992426027805}
   - component: {fileID: 1227317148295114951}
+  - component: {fileID: 1920026071557026500}
   m_Layer: 5
   m_Name: CloseButtonWidget
   m_TagString: Untagged
@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 586.13, y: 217.19}
+  m_SizeDelta: {x: 58.741776, y: 52.62155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2638460787480927593
 CanvasRenderer:
@@ -121,23 +121,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8911052992426027805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270263872960037901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e554d3b0a559d4493a228526673661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Binder:
-    m_ObjectBinds: []
-    m_Events:
-    - OnCloseClick
-    m_VariableBinds: []
 --- !u!114 &1227317148295114951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +133,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21efb3f2709eea344b5ab394137a19d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventTable: {fileID: 8911052992426027805}
+  m_EventTable: {fileID: 1920026071557026500}
   m_EventName: OnCloseClick
+--- !u!114 &1920026071557026500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270263872960037901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bc6b4745d6cbc47a6c5697ba4c87cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Binder:
+    m_ObjectBinds: []
+    m_Events:
+    - OnCloseClick
+    m_VariableBinds: []
+  m_WidgetIndex: 1
 --- !u!1 &1922730485197486120
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +293,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 27
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -300,10 +301,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: tips close
+  m_Text: X
 --- !u!1 &7759243622123837877
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Binder:
     m_ObjectBinds:
-    - {fileID: 8911052992426027805}
+    - {fileID: 0}
+    - {fileID: 1920026071557026500}
     m_Events: []
     m_VariableBinds: []

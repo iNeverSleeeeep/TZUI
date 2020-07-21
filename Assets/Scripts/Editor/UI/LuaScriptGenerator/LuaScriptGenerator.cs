@@ -160,18 +160,19 @@ namespace TZUI
                 var root = view == null ? master.gameObject : view.gameObject;
                 while (foreachWidgetType.IsMatch(outputContents))
                 {
-                    var widgetsTypes = new  List<Type>();
+                    var widgetsTypes = new List<string>();
                     var widgets = new List<UIWidget>(root.GetComponentsInChildren<UIWidget>(true));
                     foreach (var widget in widgets)
                     {
-                        if (widgetsTypes.Contains(widget.GetType()) == false)
-                            widgetsTypes.Add(widget.GetType());
+                        var typeName = GetWidgetTypeName(widget);
+                        if (widgetsTypes.Contains(typeName) == false)
+                            widgetsTypes.Add(typeName);
                     }
                     foreach (var type in widgetsTypes)
                     {
                         outputContents = foreachWidgetType.Replace(outputContents, "\n$1$2$3$4\n$1$3");
                         while (replaceWidgetType.IsMatch(outputContents))
-                            outputContents = replaceWidgetType.Replace(outputContents, "\n$1" + type.Name + "$2");
+                            outputContents = replaceWidgetType.Replace(outputContents, "\n$1" + type + "$2");
                     }
                     outputContents = foreachWidgetType.Replace(outputContents, "\n--$1$2$3$4");
                 }
@@ -188,7 +189,7 @@ namespace TZUI
                         {
                             outputContents = foreachWidget.Replace(outputContents, "\n$1$2$3$4\n$1$3");
                             while (replaceWidgetType.IsMatch(outputContents))
-                                outputContents = replaceWidgetType.Replace(outputContents, "\n$1" + widget.GetType().Name + "$2");
+                                outputContents = replaceWidgetType.Replace(outputContents, "\n$1" + GetWidgetTypeName(widget) + "$2");
                             while (replaceWidgetName.IsMatch(outputContents))
                                 outputContents = replaceWidgetName.Replace(outputContents, "\n$1" + widget.name + "$2");
                         }
@@ -324,8 +325,8 @@ namespace TZUI
         {
             foreach (var widget in master.GetComponentsInChildren<UIWidget>(true))
             {
-                var widgetType = widget.GetType().Name;
-                var template = new List<string>(File.ReadAllLines(Path.Combine(WidgetTemplatePath, widgetType + ".lua")));
+                var widgetTypeName = GetWidgetTypeName(widget);
+                var template = new List<string>(File.ReadAllLines(Path.Combine(WidgetTemplatePath, widgetTypeName + ".lua")));
                 var view = widget.GetComponentInParentHard<UIView>() as UINode;
                 if (view == null)
                     view = master;
@@ -365,6 +366,20 @@ namespace TZUI
             var dir = Path.GetDirectoryName(path);
             Directory.CreateDirectory(dir);
             File.WriteAllText(path, contents);
+        }
+
+        private static string GetWidgetTypeName(UIWidget widget)
+        {
+            if (widget is SimpleWidget)
+            {
+                var widgetIndex = (widget as SimpleWidget).m_WidgetIndex;
+                var widgetName = Enum.GetName(typeof(SimpleWidgetName), widgetIndex);
+                return widgetName.Substring(widgetName.IndexOf('_') + 1);
+            }
+            else
+            {
+                return widget.GetType().Name;
+            }
         }
     }
 }
