@@ -1,0 +1,3 @@
+[submodule "Assets/3rdParty/GameObjectPool"]
+	path = Assets/3rdParty/GameObjectPool
+	url = https://github.com/iNeverSleeeeep/GameObjectPool.git
